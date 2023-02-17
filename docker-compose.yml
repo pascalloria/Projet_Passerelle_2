@@ -39,3 +39,4 @@ networks:
 volumes:
   blogDB: 
     external: true
+

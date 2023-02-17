@@ -16,6 +16,7 @@ require_once("../controller/controller.php");
     } else{
          home();
     }
+ 
     
     } catch( Exception $e){
         $error = $e->getMessage();

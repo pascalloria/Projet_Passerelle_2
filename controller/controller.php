@@ -1,14 +1,20 @@
 
 <?php
 
-    require("../model/UserManager.php");
+    require("../model/ProjectManager.php");
 
- function home() {
-    // Model
-    $userManagers = new UserManager;
-     $requete = $userManagers->getAllUser();
+     function home() {
+        // Model
+        $projetManagers = new ProjectManager;
+        $requete = $projetManagers->getAllProject();
+        // view
+        require("../view/projectView.php");        
+    }
 
-    // view
-    require("../view/acceuilView.php");
-}
+    function createProject() {
+        // Model
+
+        //View
+        require ("../view/createProjectView.php");
+    }
 

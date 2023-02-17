@@ -10,7 +10,7 @@ require_once("../controller/controller.php");
             
         } else if ($_GET["page"]==="createProject"){    
             if (!empty($_POST["title"] ) && !empty($_POST["content"]) && !empty($_POST["id_user"]) ){               
-                addProject($_POST["title"],$_POST["content"],$_POST["id_user"]);
+                addProject(htmlspecialchars( $_POST["title"]),htmlspecialchars($_POST["content"]),htmlspecialchars($_POST["id_user"]));
             } else {             
                 createProject();
             } 

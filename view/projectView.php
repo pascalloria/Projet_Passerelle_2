@@ -22,12 +22,14 @@ ob_start();
         <p> <?=$project["content"] ?></p>
         <p><i><?=$project["id_user"] ?> crée le <?=$project["date"] ?></i> </p>
 
-            <!-- plus tard reserver a l'admin -->
-        <p> <a href="index?page=createProject">Creer un article</a></p>
+            <!-- plus tard reserver a l'admin --> 
+            <p> <a href="index?page=deleteProject">Supprimer le projet</a></p>
+
 
     <?php
         }
-    ?>
+    ?> 
+    <p> <a href="index?page=createProject">Creer un Projet</a></p>
 
 
 

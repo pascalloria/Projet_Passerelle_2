@@ -1,14 +1,10 @@
 <?php
-
-$title = "Creer votre Projet";
-
-
-
-ob_start();
+    $title = "Creer votre Projet";
+    ob_start();
 ?>
 
 <h2> Projets </h2>
-<form method="post" action="index.php?page=home">
+<form method="post" action="index.php?page=createProject">
 
     <p>
         <label for="title">Titre</label>
@@ -22,8 +18,8 @@ ob_start();
 
     
     <p>
-        <label for="auteur">auteur</label>
-        <input name="auteur" id="auteur" placeholder="auteur"></textarea>
+        <label for="id_user">auteur</label>
+        <input name="id_user" id="id_user" placeholder="auteur"></textarea>
     </p>
 
     <input type="submit">

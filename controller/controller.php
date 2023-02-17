@@ -3,13 +3,17 @@
 
     require_once("../model/ProjectManager.php");
     require_once("../model/ArticleManager.php");
-     function home() {
+
+    
+    // project
+    function home() {
         // Model
         $projetManagers = new ProjectManager;
         $requete = $projetManagers->getAllProject();
         // view
         require("../view/projectView.php");        
     }
+
 
     function createProject() {
         // Model
@@ -31,6 +35,7 @@
 
     }
 
+    // article
 
     function articles() {
         $articles = new ArticleManager;

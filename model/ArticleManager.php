@@ -15,15 +15,16 @@ class ArticleManager Extends Manager {
         return $request;
     }
 
-    public function getAuthor($id_article) {
-        $bdd = $this->connection();
-        $request = $bdd->prepare('SELECT users.login, articles.id_user FROM users INNER JOIN articles ON users.id = articles.id_user');
-        $request->execute([$id_article]);
-    }
+    // public function getAuthor() {
+    //     $bdd = $this->connection();
+    //     $author = $bdd->prepare('SELECT users.login FROM users INNER JOIN articles ON users.id = articles.id_user ');
+    //     $authorArticle = $author->execute();
+    //     return $authorArticle;
+    // }
 
     public function createArticle($title, $article, $id_user) {
         $bdd = $this->connection();
-        $request = $bdd->prepare('INSERT INTO articles (title, article, id_user) VALUES (?, ?, ?)');
+        $request = $bdd->prepare('INSERT INTO articles (title, content, id_user) VALUES (?, ?, ?)');
         $request->execute([$title, $article, $id_user]);
         return $request;
     }

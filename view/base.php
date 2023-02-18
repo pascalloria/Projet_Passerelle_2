@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../design/default.css">
     
 </head>
-<body>
+<body class="d-flex flex-column">
 
     <header class="bg-primary">
         <div class="container">
@@ -25,6 +25,12 @@
                             <a href="index.php?page=home" class="nav-link active">Accueil</a>
                         </li>
                         <li class="nav-item">
+                            <a href="index.php?page=articles" class="nav-link">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="index.php?page=new-article" class="nav-link">créer article</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>
                         </li>
                     </ul>
@@ -34,7 +40,7 @@
     </header>   
 
 
-    <section>
+    <section class="flex-grow-1">
         <div class="container">
 
             <?=$content ?>
@@ -48,7 +54,6 @@
         <div class="container"><p>Créé par Mistrall et Eclat</p></div>
         
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-    <script src="../vendor/node_modules/@popperjs/core/dist/cjs/popper.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>

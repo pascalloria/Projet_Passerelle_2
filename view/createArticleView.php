@@ -8,7 +8,7 @@ ob_start();
 ?>
 
 <h2> Création d'article </h2>
-<form method="post" action="index.php?page=articles">
+<form method="post" action="index.php?page=new-article">
 
     <p>
         <label for="title">Titre</label>
@@ -17,7 +17,7 @@ ob_start();
 
     <p>
         <label for="content">Texte</label>
-        <textarea name="content" id="article" cols="30" rows="10" maxlength="10000"></textarea>
+        <textarea name="content" id="content" cols="30" rows="10" maxlength="10000"></textarea>
     </p>   
 
 

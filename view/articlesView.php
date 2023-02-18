@@ -1,23 +1,30 @@
 <?php
 $title = "Articles";
-
+require_once('../model/Checker.php');
+require_once('../model/DateFr.php');
 ob_start();
 ?>
-<section class="container">
-        
-            <h1>Articles</h1>
-           
-            <p>Voici la liste des Articles :</p>
+<div class="my-5">
 
-            <?php
-                while($articles = $request->fetch()) { 
-            ?>
-                <p><b><?= $articles['date'] ?> <?= $articles['article'] ?></b> : ecrit par : <?= $articles['id_user'] ?></p>
-            <?php
-                }
-            ?>
+    <h1>Articles</h1>
 
-        </section>
+    <p>Voici la liste des Articles :</p>
+
+    <?php
+    while ($articles = $request->fetch()) {
+        $author = Checker::getAuthor("articles", $articles['id_user']);
+    ?>
+        <div class="border border-4 p-3 mb-4">
+
+            <h2><?= $articles['title'] ?></h2>
+            <p>ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span> , le : <?=DateToFr::dateFR($articles['date'])?> </p>
+            <p><?= $articles['content'] ?> </p>
+        </div>
+    <?php
+    }
+    ?>
+
+</div>
 
 <?php
 

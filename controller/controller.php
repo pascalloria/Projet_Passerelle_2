@@ -7,6 +7,11 @@ session_start();
     require_once('../model/DateFr.php');
     require_once('../model/CommentariesManager.php');
      function home() {
+
+
+    
+    // project
+    function home() {
         // Model
         $projetManagers = new ProjectManager;
         $requete = $projetManagers->getAllProject();
@@ -14,12 +19,28 @@ session_start();
         require("../view/projectView.php");        
     }
 
+
     function createProject() {
         // Model
 
         //View
         require ("../view/createProjectView.php");
     }
+     function addProject($title,$content,$id_user) {
+        // Model
+        $projet = new ProjectManager;
+        $result = $projet->addProject($title,$content,$id_user);
+        echo $result;
+        if ($result){
+            header("location:index.php?page=home&&succes=1&&message=L'article à bien été créér");
+        } else {
+            throw new Exception("L'article n'a pas pu etre créer");
+        }
+
+
+    }
+
+    // article
 
     function articles() {
         $articles = new ArticleManager;
@@ -66,6 +87,7 @@ session_start();
             exit();
         }
     }
+
 
     function redirect() {
         header('location:index.php?page=articles');

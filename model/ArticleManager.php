@@ -15,13 +15,6 @@ class ArticleManager Extends Manager {
         return $request;
     }
 
-    // public function getAuthor() {
-    //     $bdd = $this->connection();
-    //     $author = $bdd->prepare('SELECT users.login FROM users INNER JOIN articles ON users.id = articles.id_user ');
-    //     $authorArticle = $author->execute();
-    //     return $authorArticle;
-    // }
-
     public function createArticle($title, $article, $id_user) {
         $bdd = $this->connection();
         $request = $bdd->prepare('INSERT INTO articles (title, content, id_user) VALUES (?, ?, ?)');
@@ -29,10 +22,10 @@ class ArticleManager Extends Manager {
         return $request;
     }
     
-    public function updateArticle($title, $article, $id_user, $id_article) {
+    public function updateArticle($title, $content, $id_article) {
         $bdd = $this->connection();
-        $request = $bdd->prepare('UPDATE articles SET title=?, article=?, id_user=? WHERE id=?');
-        $request->execute([$title, $article, $id_user, $id_article]);
+        $request = $bdd->prepare('UPDATE articles SET title=?, content=? WHERE id=?');
+        $request->execute([$title, $content, $id_article]);
         return $request;
     }
 

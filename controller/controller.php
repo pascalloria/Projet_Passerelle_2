@@ -6,7 +6,6 @@ session_start();
     require_once('../model/Checker.php');
     require_once('../model/DateFr.php');
     require_once('../model/CommentariesManager.php');
-     function home() {
 
 
     

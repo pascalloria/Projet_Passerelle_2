@@ -1,23 +1,49 @@
 <?php
 $title = "Articles";
 
+
 ob_start();
 ?>
-<section class="container">
+<div class="my-5">
+
+    <h1>Articles</h1>
+
+    <p>Voici la liste des Articles, cliquez pour y accéder :</p>
+    <form action="index.php?page=article" method="post">
+
+        <?php
+    while ($articles = $request->fetch()) {
+        $author = Checker::getAuthor("articles", $articles['id_user']);
+        ?>
         
-            <h1>Articles</h1>
-           
-            <p>Voici la liste des Articles :</p>
-
+            <div class="card  mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h2><?= $articles['title'] ?></h2>
+                    <div class="badge fs-6  bg-primary">
+                        <?= Checker::articleGotComs($articles['id']) ?><small> commentaires</small> 
+                    </div>
+                </div>
+                <div class="card-body">
+                    
+                    <p class="text-truncate"><?= $articles['content'] ?> </p>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-between">
+                    <div>
+                        <p>ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span> </p>
+                        <p>le : <?= DateToFr::dateFR($articles['date']) ?> </p>
+                    </div>
+                    <div class="text-bg-dark rounded-3">
+                        <button class="btn btn-outline-light" type="submit" value="<?=$articles['id']?>" name="article">Voir plus</button>
+                    </div>
+                </div>
+            </div>
             <?php
-                while($articles = $request->fetch()) { 
-            ?>
-                <p><b><?= $articles['date'] ?> <?= $articles['article'] ?></b> : ecrit par : <?= $articles['id_user'] ?></p>
-            <?php
-                }
-            ?>
+    }
+    ?>
+    
+</form>
 
-        </section>
+</div>
 
 <?php
 

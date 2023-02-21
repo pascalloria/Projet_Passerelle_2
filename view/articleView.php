@@ -14,18 +14,17 @@ ob_start();
         <?php
         
         while ($article = $request->fetch()) {
-
             $author = Checker::getAuthor("articles", $article['id_user']);
-        ?>
+            ?>
             <div class="card  mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h2><?= $article['title'] ?></h2>
                     <div>
-                        <?= Checker::controls($article['id_user']); ?>
+                        <?= Checker::controls($article['id_user'], $article['id'], $article['content'], true); ?>
                     </div>
                 </div>
                 <div class="card-body">
-
+                    
                     <p><?= $article['content'] ?> </p>
                 </div>
                 <div class="card-footer d-flex justify-content-between align-items-center">
@@ -38,10 +37,10 @@ ob_start();
                             <?= Checker::articleGotComs($article['id']) ?><small> commentaires</small>
                         </div>
                     </div>
-
+                    
                 </div>
             </div>
-        <?php }
+            <?php }
         if (isset($_SESSION['id'])) { ?>
             <div class="card col-md-8 col-lg-10 mx-auto mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
@@ -56,23 +55,23 @@ ob_start();
                     </div>
                 </div>
             </div>
+            
+            <?php } else { ?>
+                <div class="alert alert-warning d-flex justify-content-center align-items-center">
+                    <p>Vous devez être connecté pour pouvoir répondre: <a href="#" class="btn btn-link    mx-2">Se Connecter</a></p>
+                </div>
+                <?php }
 
-        <?php } else { ?>
-            <div class="alert alert-warning d-flex justify-content-center align-items-center">
-                <p>Vous devez être connecté pour pouvoir répondre: <a href="#" class="btn btn-link    mx-2">Se Connecter</a></p>
-            </div>
-        <?php }
-
-        while ($commentaries = $coms->fetch()) {
-
-            $authorCom = Checker::getAuthor("commentaries", $commentaries['id_user']);
-        ?>
+while ($commentaries = $coms->fetch()) {
+    
+    $authorCom = Checker::getAuthor("commentaries", $commentaries['id_user']);
+    ?>
 
             <div class="card col-md-8 col-lg-10 mx-auto mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4><span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?></h4>
                     <div>
-                        <?= Checker::controls($commentaries['id_user']); ?>
+                        <?= Checker::controls($commentaries['id_user'], $commentaries['id'], $commentaries['content']); ?>
                     </div>
                 </div>
                 <div class="card-body">

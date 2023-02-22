@@ -10773,4 +10773,9 @@ html, body {
   height: 100%;
 }
 
+.card-img-top {
+  height: auto;
+  width: 25%;
+}
+
 /*# sourceMappingURL=default.css.map */

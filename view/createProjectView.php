@@ -1,38 +1,13 @@
 <?php
+    // definition des variables
     $title = "Creer votre Projet";
+    $button = '<button class="btn btn-success mb-3" type="submit"  >Creer le projet </button>';
+    $form= '<form class="form" method="post" enctype="multipart/form-data" action="index.php?page=createProject">' ;   
+    $project= array("title"=>"" ,"content"=>"","id_user"=>"","img"=>"");
+    // Appel de la formProjectView
     ob_start();
-?>
-
-<h2> Projets </h2>
-<form method="post" action="index.php?page=createProject">
-
-    <p>
-        <label for="title">Titre</label>
-        <input type="text" id="title" name="title" placeholder="Votre titre">
-    </p>
-
-    <p>
-        <label for="content">Texte</label>
-        <textarea name="content" id="content" cols="30" rows="10"></textarea>
-    </p>   
-
-    
-    <p>
-        <label for="id_user">auteur</label>
-        <input name="id_user" id="id_user" placeholder="auteur"></textarea>
-    </p>
-
-    <input type="submit">
-
-    
-</form>       
-
-   
-
-
-
-
-<?php 
-$content = ob_get_clean();
-require_once("base.php");
+    require_once("formProjectView.php");
+    $content = ob_get_clean();
+    // Appel de base.php
+    require_once("base.php");
 ?>

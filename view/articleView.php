@@ -33,7 +33,7 @@ ob_start();
                     <p>Le : <?= DateToFr::dateFR($article['date']) ?> </p>
                 </div>
                 <div class="text-bg-dark rounded-3">
-                    <div class="btn border p-2 btn-outline-light  ">
+                    <div  id="btnCom" class="btn border p-2 btn-outline-light  ">
                         <small class="showMe"> Voir les commentaires</small>
                     </div>
                 </div>

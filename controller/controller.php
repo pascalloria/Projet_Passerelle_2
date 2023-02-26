@@ -6,40 +6,90 @@ session_start();
     require_once('../model/Checker.php');
     require_once('../model/DateFr.php');
     require_once('../model/CommentariesManager.php');
-
+     require_once("../model/ImageManager.php");
 
     
     // project
     function home() {
-        // Model
-        $projetManagers = new ProjectManager;
-        $requete = $projetManagers->getAllProject();
-        // view
-        require("../view/projectView.php");        
+        
+        //Model
+        $projects = new ProjectManager;
+        $requete = $projects->getAllProject();
+        if (!$requete){
+            throw new Exception("Les projets n'ont pas pus etre afficher");
+            exit();
+        } 
+
+        if (!empty($_GET["deleteId"])){            
+            deleteProject($_GET["deleteId"]);
+
+        } else if (!empty($_GET["updateId"])){             
+            updateProject($_GET["updateId"]);
+        } 
+        // view 
+        require("../view/projectsView.php");  
+
+
     }
 
-
     function createProject() {
-        // Model
-
         //View
         require ("../view/createProjectView.php");
     }
-     function addProject($title,$content,$id_user) {
-        // Model
-        $projet = new ProjectManager;
-        $result = $projet->addProject($title,$content,$id_user);
-        echo $result;
-        if ($result){
-            header("location:index.php?page=home&&succes=1&&message=L'article à bien été créér");
-        } else {
-            throw new Exception("L'article n'a pas pu etre créer");
-        }
 
-
+    function test(){
+        require("../view/testView.php");
     }
 
+    function uploadImage(){
+        $image = new ImageManager;
+        $result = $image->uploadImg();
+        return $result;   
+    }
+
+    function addProject($title,$content,$id_user,$img) {
+        // Model
+        $projet = new ProjectManager;
+        $result = $projet->addProject($title,$content,$id_user,$img);     
+        if (!$result){
+           throw new Exception("Le projet ne peux pas etre CREER pour le moment si l'erreur persiste, merci de contacter l'administrateur"); 
+           exit();         
+        } else {
+            header("location:index.php?page=home&&success=1&&message=Le projet à bien été créér");
+            exit();
+        }
+    }
+
+    function deleteProject ($id) {              
+        $projet = new ProjectManager;        
+        $result = $projet->deleteProject($id);    
+        if ($result === 0 ){            
+            throw new Exception("Le projet ne peux pas etre SUPPRIMER pour le moment si l'erreur persiste, merci de contacter l'administrateur");  
+        } else {
+            header("location:index.php?page=home&&success=1&&message=Le projet à bien été supprimer");
+        }
+    }
+
+    function updateProject ($id){ 
+        // Model       
+        $project = new ProjectManager;        
+        $request=$project->updateProject($id);        
+        // View
+        require ("../view/updateProjectView.php");
+        }  
+   
     // article
+
+    function updateBddProject ($title,$content,$id_user,$id,$img){
+        $project = new ProjectManager;
+        $result =$project->updateProjectBdd($title,$content,$id_user,$id,$img);
+        if ($result ===0){
+            throw new Exception("La modification du projet à échouer. Veuiller contacter l'administrateur du site");
+        } else {
+            header("location:index.php?success=1&message=La modification est effecuté avec suces");
+            exit();
+        }     
+    }
 
     function articles() {
         $articles = new ArticleManager;
@@ -62,6 +112,7 @@ session_start();
         
         if($newCom === false) {
             throw new Exception("Impossible d'ajouter votre avis pour le moment");
+            exit();
             
         } else {
             header('location:index.php?page=article');
@@ -84,6 +135,7 @@ session_start();
         
         if(!$request) {
             throw new Exception("Impossible d'ajouter votre article pour le moment");
+            exit();
             
         } else {
             header('location:index.php?page=articles');

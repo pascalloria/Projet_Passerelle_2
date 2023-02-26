@@ -1,30 +1,19 @@
+// station météo geolocalisé
 const weather = document.querySelector("#weather");
-let city;
+let city="marseille";
 const today = new Date();
 const time = today.getHours();
 const month = today.getMonth()+1;
+const a = "253664b";
+const b = "278f0a6";
 
 function takeWeather(city) {
     const url =
-      "https://api.openweathermap.org/data/2.5/weather?q=" + city + " &appid=253664b278f0a6f775da23d9d38db076&units=metric";
+      "https://api.openweathermap.org/data/2.5/weather?q=" + city + " &appid=" + a + b + "f775da23d9d38db076&units=metric";
       fetchIsGood(url);
       
 }
 
-if('geolocation' in navigator) {
-    navigator.geolocation.watchPosition((position) => {
-        const url = 'https://api.openweathermap.org/data/2.5/weather?lon='+ position.coords.longitude+ '&lat=' + position.coords.latitude +  '&appid=253664b278f0a6f775da23d9d38db076&units=metric';
-        fetchIsGood(url);
-    }, options);
-
-    var options = {
-    enableHighAccuracy: true
-    }
-}
-else {
-    city = 'marseille';
-    takeWeather(city);
-}
 function fetchIsGood(url) {
      // creer requete
   fetch(url)
@@ -34,8 +23,10 @@ function fetchIsGood(url) {
     const humidity = response.main.humidity;
     const sky = response.weather[0].description;
 
+    // notre affichage de la temperature
     weather.innerHTML = response.name + " : " + temp.toFixed(1) + " °C ";
 
+    // on affiche une icone en fonction du ciel
     if (sky.includes("clear")) {
       // heure d'hiver 
       if (month < 4 || month >= 11 ) {
@@ -66,6 +57,16 @@ function fetchIsGood(url) {
     }
   });
 }
+// si l'utilisateur est geolocalisé on utilise sa position
+if('geolocation' in navigator) {
+    navigator.geolocation.watchPosition((position) => {
+        const url = 'https://api.openweathermap.org/data/2.5/weather?lon='+ position.coords.longitude+ '&lat=' + position.coords.latitude +  '&appid=' + a + b +'f775da23d9d38db076&units=metric';
+        fetchIsGood(url);
+    }, options);
 
-
-
+    var options = {
+    enableHighAccuracy: true
+    }
+} 
+// sinon il est à marseille par défaut (et franchement ça aurait pu être pire)
+takeWeather(city);

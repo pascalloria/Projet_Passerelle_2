@@ -31,6 +31,9 @@
                             <a href="index.php?page=new-article" class="nav-link">créer article</a>
                         </li>
                         <li class="nav-item">
+                            <a href="index.php?page=inscription" class="nav-link">Inscription</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>
                         </li>
                     </ul>

@@ -7,6 +7,7 @@ session_start();
     require_once('../model/DateFr.php');
     require_once('../model/CommentariesManager.php');
      require_once("../model/ImageManager.php");
+    require_once("../model/UsersManager.php");
 
     
     // project
@@ -35,10 +36,6 @@ session_start();
     function createProject() {
         //View
         require ("../view/createProjectView.php");
-    }
-
-    function test(){
-        require("../view/testView.php");
     }
 
     function uploadImage(){
@@ -76,10 +73,8 @@ session_start();
         $request=$project->updateProject($id);        
         // View
         require ("../view/updateProjectView.php");
-        }  
+    }  
    
-    // article
-
     function updateBddProject ($title,$content,$id_user,$id,$img){
         $project = new ProjectManager;
         $result =$project->updateProjectBdd($title,$content,$id_user,$id,$img);
@@ -90,7 +85,7 @@ session_start();
             exit();
         }     
     }
-
+// article
     function articles() {
         $articles = new ArticleManager;
         $request = $articles->getAllArticles();
@@ -171,9 +166,40 @@ session_start();
         header('location:index.php?page=articles');
         exit();
     }
-    function successMessage() {
-        $_SESSION['success'] = 1;
+
+    function redirect2($path) {
+        header('location:'.$path);
+        exit();
     }
-    function clearMessage() {
-        unset($_SESSION['success']);
+
+    // user  
+
+
+    function register(){
+        require("../view/signInView.php");
+    }
+
+    function avalaibleLogin($login){
+        $user = new UserManagers;
+        $req= $user->avalaibleLogin($login);        
+        while ($res =$req->fetch()){
+            if ($res["loginNumber"] != 0){
+               return false;
+            }			
+        }        
+    }
+
+    function addUser($login,$password,$email,){
+
+        //model       
+        $user = new UserManagers;
+        $user->addUserBdd($login,$password,$email,);
+
+        if($user){
+            header("location: index.php?success=1&message=Votre compte à été créer avec sucèss");
+            exit();
+        } else {
+            throw new Exception("Un probleme est survenue lors de la création de votre compte");
+            exit();
+        }        
     }

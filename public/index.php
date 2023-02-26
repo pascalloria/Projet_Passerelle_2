@@ -73,6 +73,42 @@ try {
             else {
                 article($_SESSION['id_article']);
             }
+        } else if ($_GET['page'] === 'inscription') {
+
+            if (!empty($_POST["login"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["password_two"])){
+                
+                // L'adresse email est-elle correcte ?
+                $email=htmlspecialchars( $_POST["email"]);                
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    header('location: ?page=inscription&error=1&message=Votre adresse email est invalide.');
+                    exit();
+                }                
+                // L'email n'est pas deja enregistrer ? 
+
+                
+                // Les passwords correspond t'il ?
+                if ($_POST["password"] === $_POST["password_two"]){
+                    $password = htmlspecialchars($_POST["password"]);
+                    // cryptage du password
+                    $password = "12452".sha1($password)."24478";
+
+                } else {
+                    header('location: ?page=inscription&error=1&message=Les 2 mots de passe ne correspondent pas');
+                    exit();
+                }
+                // login libre.
+                $login=htmlspecialchars($_POST["login"]);
+                if (!avalaibleLogin($login)){
+                    header('location: ?page=inscription&error=1&message=Le login n\'est pas disponible. Merci d\'en saisir un nouveau.');
+                    exit();
+                }
+                echo "test";
+                addUser($login,$password,$email) ;              
+            }            
+            register();
+
+
+
             
         } else if ($_GET['page'] === 'up-article') {
             

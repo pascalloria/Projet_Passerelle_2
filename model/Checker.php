@@ -72,13 +72,14 @@ class Checker extends Manager
 
                   <!-- Body -->
                   <div class="modal-body">
-                    <textarea name="content-com" class="form-control"><?= $content ?></textarea>
+                    <textarea class="comUp form-control" name="content-com" rows="7"><?= $content ?></textarea>
                   </div>
 
                   <!-- Footer -->
                   <div class="modal-footer">
+                    <span class="countComUp "></span>
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="submit" name="update-com" value="<?= $id_artOrCom ?>" class="btn btn-warning">Modifier</button>
+                    <button type="submit" class="btn btn-warning" name="update-com" value="<?= $id_artOrCom ?>" >Modifier</button>
                   </div>
 
                 </div>

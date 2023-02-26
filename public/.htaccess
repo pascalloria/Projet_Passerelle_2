@@ -1,0 +1,7 @@
+Options +FollowSymLinks
+
+
+RewriteEngine On
+
+# Régele de réeecriture
+RewriteRule ^([a-z0-9]+)$ ?page=$1 [L]

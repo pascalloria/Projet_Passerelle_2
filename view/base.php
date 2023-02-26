@@ -31,11 +31,26 @@
                             <a href="index.php?page=new-article" class="nav-link">créer article</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?page=inscription" class="nav-link">Inscription</a>
-                        </li>
-                        <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>
                         </li>
+
+                        <?php if (isset($_SESSION["id"])){ ?>
+                            <li class="nav-item">
+                                <a href="index.php?page=profil" class="nav-link">Profil</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.php?page=logout" class="nav-link">Deconnection</a>
+                            </li>
+                        <?php } else { ?>
+                            <li class="nav-item">
+                                <a href="index.php?page=connect" class="nav-link">Connection</a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="index.php?page=inscription" class="nav-link">inscription</a>
+                            </li>
+
+                        <?php 
+                        } ?> 
                     </ul>
                     
                 </div>
@@ -85,9 +100,14 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="assets/js/enableTooltips.js"></script>
+  
     <?php if(isset($_SESSION['id'])) { ?>
         <script src="assets/js/weatherBar.js"></script>   
-        <?php }?>
-    <?= $script ?>
+    <?php }
+    if (isset($script)){
+        echo $script ;
+    }
+
+    ?>
 
 </body>

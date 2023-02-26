@@ -19,13 +19,16 @@ ob_start();
             <div class="card  mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h2><?= $articles['title'] ?></h2>
-                    <div class="badge fs-6  bg-primary">
-                        <?= Checker::articleGotComs($articles['id']) ?><small> commentaires</small> 
-                    </div>
+                    
                 </div>
                 <div class="card-body">
                     
                     <p class="text-truncate"><?= $articles['content'] ?> </p>
+                </div>
+                <div class="card-footer d-flex align-items-center justify-content-end gap-4" >
+                    <div data-bs-toggle="tooltip" data-bs-placement="top" title="commentaires">
+                        <?= Checker::articleGotComs($articles['id']) ?><i class="mx-2 fa-regular fa-comment" ></i>
+                    </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <div>

@@ -161,19 +161,19 @@ session_start();
         $request = $commentarieManager->updateCommentarie($newContent, $id_com);
     }
 
-    function successMessage() {
-        $_SESSION['success'] = 1;
+    function successMessage($message) {
+        $_SESSION['success'] = $message;
     }
+     function errorMessage($message) {
+        $_SESSION['error'] = $message;
+    }
+
     function clearMessage() {
         unset($_SESSION['success']);
-    }
+        unset($_SESSION['error']);
+    }    
 
-    function redirectArticles() {
-        header('location:index.php?page=articles');
-        exit();
-    }
-
-    function redirect2($path) {
+    function redirect($path) {
         header('location:'.$path);
         exit();
     }
@@ -201,8 +201,8 @@ session_start();
         $user->addUserBdd($login,$password,$email,);
 
         if($user){
-            header("location: index.php?success=1&message=Votre compte à été créer avec sucèss");
-            exit();
+            successMessage("Votre compte à été créer avec sucèss"); 
+            redirect("index.php");                     
         } else {
             throw new Exception("Un probleme est survenue lors de la création de votre compte");
             exit();
@@ -210,4 +210,21 @@ session_start();
     }
 
 
+    function connectUser ($login,$password){ 
+        $user = new UserManagers;        
+        $request= $user->connectUser($login,$password);
+        $res = $request->fetch();
+        var_dump($res);
+        if (!empty($res["id"])){
+            $_SESSION["id"]=$res["id"];            
+            //redirect("index.php");
+            successMessage("Vous ete connecté");
+            redirect("index.php");                
+        } else {
+            errorMessage ("Le login ou le mot de passe n'est pas valide");
+        }
+    }
 
+    function connection(){
+        require_once("../view/connectView.php");
+    }

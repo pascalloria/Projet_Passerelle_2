@@ -59,13 +59,18 @@
             <?php } ?>     
     </header>   
     <?php if(isset($_SESSION['success'])) { ?>
-        <div class="mt-2 container alert alert-success">Contenu mis à jour !</div>
+        <div class="mt-2 container alert alert-success"><?= $_SESSION["success"] ?></div>
     <?php }
     ?>
 
+    <?php if(isset($_SESSION['error'])) { ?>
+            <div class="mt-2 container alert alert-danger"><?= $_SESSION["error"] ?></div>
+        <?php }
+    ?>
+
+
     <section class="flex-grow-1">
         <div class="container">
-
             <?=$content ?>
         </div>
     </section>

@@ -25,4 +25,12 @@ class UserManagers extends Manager {
         $requete->execute([$login]);
         return $requete->rowCount();       
     }
+
+    public function connectUser($login, $password){
+        $bdd = $this-> connection();
+        $requete = $bdd->prepare("SELECT * FROM users WHERE login= ? and password= ?");
+        $requete->execute([$login,$password]);
+        return $requete;
+    }
+
  }

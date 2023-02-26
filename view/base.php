@@ -31,6 +31,9 @@
                             <a href="index.php?page=new-article" class="nav-link">créer article</a>
                         </li>
                         <li class="nav-item">
+                            <a href="index.php?page=inscription" class="nav-link">Inscription</a>
+                        </li>
+                        <li class="nav-item">
                             <a href="#" class="nav-link">Contact</a>
                         </li>
                     </ul>
@@ -56,13 +59,18 @@
             <?php } ?>     
     </header>   
     <?php if(isset($_SESSION['success'])) { ?>
-        <div class="mt-2 container alert alert-success">Contenu mis à jour !</div>
+        <div class="mt-2 container alert alert-success"><?= $_SESSION["success"] ?></div>
     <?php }
     ?>
 
+    <?php if(isset($_SESSION['error'])) { ?>
+            <div class="mt-2 container alert alert-danger"><?= $_SESSION["error"] ?></div>
+        <?php }
+    ?>
+
+
     <section class="flex-grow-1">
         <div class="container">
-
             <?=$content ?>
         </div>
     </section>

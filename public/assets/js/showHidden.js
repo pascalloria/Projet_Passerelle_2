@@ -1,11 +1,12 @@
-const btn = document.querySelector('.showMe');
+const text = document.querySelector('.showMe');
+const btnCom = document.querySelector('#btnCom');
 const div = document.querySelector('.showHidden');
 
-btn.addEventListener('click', () => {
+btnCom.addEventListener('click', () => {
     div.classList.toggle('d-none');
-    if (btn.textContent == 'Cacher les commentaires') {
-        btn.textContent= 'Afficher les commentaires';
+    if (text.textContent == 'Cacher les commentaires') {
+        text.textContent= 'Afficher les commentaires';
     } else {
-        btn.textContent= 'Cacher les commentaires';
+        text.textContent= 'Cacher les commentaires';
     }
 });

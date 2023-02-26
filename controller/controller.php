@@ -6,7 +6,8 @@ session_start();
     require_once('../model/Checker.php');
     require_once('../model/DateFr.php');
     require_once('../model/CommentariesManager.php');
-    require_once("../model/ImageManager.php");
+     require_once("../model/ImageManager.php");
+
     
     // project
     function home() {
@@ -120,8 +121,12 @@ session_start();
     }
 
     function newArticleForm() {
-        require('../view/createArticleView.php');
-        
+        require('../view/createArticleView.php');    
+    }
+    function upArticleForm($id_article) {
+        $article = new ArticleManager;
+        $request = $article->getOneArticle($id_article);
+        require('../view/modifArticleView.php');
     }
     function addArticle($title_article, $article, $id_user) {
         // Model
@@ -137,9 +142,38 @@ session_start();
             exit();
         }
     }
-
-
-    function redirect() {
+    
+    function modifyArticle($title_article,$content,$id_article) {
+        $articleManager = new ArticleManager;
+        $request = $articleManager->getOneArticle($id_article);
+        $upArticle = $articleManager->updateArticle($title_article,$content,$id_article);
+        if(!$request || !$upArticle) {
+            throw new Exception("Impossible d'ajouter votre avis pour le moment");
+            
+        } else {
+            header('location:index.php?page=article');
+            exit();
+        }
+    }
+    function eraseArticle($id_article) {
+        $articleManager = new ArticleManager;
+        $request = $articleManager->deleteArticle($id_article);
+    }
+    function eraseCommentarie($id_com) {
+        $articleManager = new CommentariesManager;
+        $request = $articleManager->deleteCommentarie($id_com);
+    }
+    function updateCom($newContent, $id_com) {
+        $commentarieManager = new CommentariesManager;
+        $request = $commentarieManager->updateCommentarie($newContent, $id_com);
+    }
+    function redirectArticles() {
         header('location:index.php?page=articles');
         exit();
+    }
+    function successMessage() {
+        $_SESSION['success'] = 1;
+    }
+    function clearMessage() {
+        unset($_SESSION['success']);
     }

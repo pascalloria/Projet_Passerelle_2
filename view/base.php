@@ -34,11 +34,31 @@
                             <a href="#" class="nav-link">Contact</a>
                         </li>
                     </ul>
-                </div>            
+                    
+                </div>
+            
             </nav>   
-        </div>     
-    </header>   
+        </div>
+        <?php if (isset($_SESSION['id'])) {
+            $user = Checker::getNameAndRank($_SESSION['id'])?>
+                <div class="p-2 bg-light">
+                    <div class="container d-flex justify-content-between">
+                        <div>
 
+                            <i class="fa-regular fa-circle-user"></i>
+                            <p class="d-inline"><span class="<?=Checker::colorMyRank($user['rank']) ?>"><?=$user['login'] ?></span></p>
+                        </div>
+                        <div id="weather">
+
+                        </div>
+                    </div>
+                </div>           
+            <?php } ?>     
+    </header>   
+    <?php if(isset($_SESSION['success'])) { ?>
+        <div class="mt-2 container alert alert-success">Contenu mis à jour !</div>
+    <?php }
+    ?>
 
     <section class="flex-grow-1">
         <div class="container">
@@ -57,6 +77,6 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="assets/js/enableTooltips.js"></script>
-    </footer>    
+    <script src="assets/js/weatherBar.js"></script>   
 
 </body>

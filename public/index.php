@@ -3,6 +3,7 @@
 require_once("../controller/controller.php");
 
 try {
+    //clearMessage();
     if (!empty($_GET["page"])) {
         if ($_GET["page"] === "home") {
             home();                    
@@ -53,13 +54,13 @@ try {
                 // on ajoute un commentaire, en récuperant au passage les supers globales 
                 //de SESSION -> ['id_article'] et ['id'] (c'est l'utilisateur connecté)
                 // car nos variables se perdent lors du routing
-                successMessage();
+                successMessage("contenue mis a jour");
                 addCommentarie($content, $_SESSION['id_article'], $_SESSION['id']);
              
             } else if (!empty($_POST['delete-art'])) {
                 $id_article = htmlspecialchars($_POST['delete-art']);
                 eraseArticle($id_article);
-                redirectArticles();
+                redirect("index.php?page=articles");
             } else if (!empty($_POST['delete-com'])) {
                 $id_com = htmlspecialchars($_POST['delete-com']);
                 eraseCommentarie($id_com);
@@ -73,9 +74,8 @@ try {
             else {
                 article($_SESSION['id_article']);
             }
-            
-        } else if ($_GET['page'] === 'up-article') {
-            
+
+        } else if ($_GET['page'] === 'up-article') {        
             $id_article = $_SESSION['id_article'];
             
             if (!empty($_POST['title']) && !empty($_POST['content'])) {
@@ -84,15 +84,50 @@ try {
                 modifyArticle($title_article, $article, $id_article);
             } else {     
                 upArticleForm($id_article);    
-            }         
-            
-        } else if ($_GET["page"]==="createProject"){    
-            if (!empty($_POST["title"] ) && !empty($_POST["content"]) && !empty($_POST["id_user"]) ){               
-                addProject(htmlspecialchars( $_POST["title"]),htmlspecialchars($_POST["content"]),htmlspecialchars($_POST["id_user"]));
-            } else {             
-                createProject();
             } 
+        
+        
+        
+        } else if ($_GET['page'] === 'inscription') {
 
+            if (!empty($_POST["login"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["password_two"])){
+                // L'adresse email est-elle correcte ?
+                $email=htmlspecialchars( $_POST["email"]);                
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    header('location: ?page=inscription&error=1&message=Votre adresse email est invalide.');
+                    exit();
+                }                
+                // L'email n'est pas deja enregistrer ? 
+
+                
+                // Les passwords correspond t'il ?
+                if ($_POST["password"] === $_POST["password_two"]){
+                    $password = htmlspecialchars($_POST["password"]);
+                    // cryptage du password
+                    $password = "12452".sha1($password)."24478";
+
+                } else {
+                    header('location: ?page=inscription&error=1&message=Les 2 mots de passe ne correspondent pas');
+                    exit();
+                }
+                // login libre.
+                $login=htmlspecialchars($_POST["login"]);               
+                if (!avalaibleLogin($login) == 1 ){                   
+                    header('location: ?page=inscription&error=1&message=Le login n\'est pas disponible. Merci d\'en saisir un nouveau.');
+                    exit();
+                }                
+                addUser($login,$password,$email) ;              
+            }            
+            register();
+
+        } else if ($_GET['page'] ==="connect" ){
+
+            var_dump($_POST);
+            if(!empty($_POST["login"]) && !empty($_POST['password']))  {
+                $password = "12452".sha1(htmlspecialchars($_POST['password']))."24478";
+                connectUser(htmlspecialchars($_POST["login"]),$password);
+            }         
+            connection();
 
         } else {
             throw new Exception("Cette page n'existe pas");

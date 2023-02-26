@@ -1,6 +1,6 @@
 <?php
 $title = "Article";
-$_SESSION['id'] = 2; //je simule un utilisateur connecté !
+// $_SESSION['id'] = 2; //je simule un utilisateur connecté !
 
 ob_start();
 ?>

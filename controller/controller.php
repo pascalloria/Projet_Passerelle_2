@@ -7,6 +7,7 @@ session_start();
     require_once('../model/DateFr.php');
     require_once('../model/CommentariesManager.php');
      require_once("../model/ImageManager.php");
+    require_once("../model/UsersManager.php");
 
     
     // project
@@ -28,17 +29,11 @@ session_start();
         } 
         // view 
         require("../view/projectsView.php");  
-
-
     }
 
     function createProject() {
         //View
         require ("../view/createProjectView.php");
-    }
-
-    function test(){
-        require("../view/testView.php");
     }
 
     function uploadImage(){
@@ -76,10 +71,8 @@ session_start();
         $request=$project->updateProject($id);        
         // View
         require ("../view/updateProjectView.php");
-        }  
+    }  
    
-    // article
-
     function updateBddProject ($title,$content,$id_user,$id,$img){
         $project = new ProjectManager;
         $result =$project->updateProjectBdd($title,$content,$id_user,$id,$img);
@@ -90,7 +83,7 @@ session_start();
             exit();
         }     
     }
-
+// article
     function articles() {
         $articles = new ArticleManager;
         $request = $articles->getAllArticles();
@@ -167,13 +160,71 @@ session_start();
         $commentarieManager = new CommentariesManager;
         $request = $commentarieManager->updateCommentarie($newContent, $id_com);
     }
-    function redirectArticles() {
-        header('location:index.php?page=articles');
-        exit();
+
+    function successMessage($message) {
+        $_SESSION['success'] = $message;
     }
-    function successMessage() {
-        $_SESSION['success'] = 1;
+     function errorMessage($message) {
+        $_SESSION['error'] = $message;
     }
+
     function clearMessage() {
         unset($_SESSION['success']);
+        unset($_SESSION['error']);
+    }    
+
+    function redirect($path) {
+        header('location:'.$path);
+        exit();
+    }
+
+
+
+    // user  
+    function register(){
+        require("../view/signInView.php");
+    }
+
+    function avalaibleLogin($login){
+        $user = new UserManagers;
+        $request= $user->avalaibleLogin($login);             
+        if ($request === 0){
+            return	true;
+        }	        
+    }        
+    
+
+    function addUser($login,$password,$email,){
+
+        //model       
+        $user = new UserManagers;
+        $user->addUserBdd($login,$password,$email,);
+
+        if($user){
+            successMessage("Votre compte à été créer avec sucèss"); 
+            redirect("index.php");                     
+        } else {
+            throw new Exception("Un probleme est survenue lors de la création de votre compte");
+            exit();
+        }        
+    }
+
+
+    function connectUser ($login,$password){ 
+        $user = new UserManagers;        
+        $request= $user->connectUser($login,$password);
+        $res = $request->fetch();
+        var_dump($res);
+        if (!empty($res["id"])){
+            $_SESSION["id"]=$res["id"];            
+            //redirect("index.php");
+            successMessage("Vous ete connecté");
+            redirect("index.php");                
+        } else {
+            errorMessage ("Le login ou le mot de passe n'est pas valide");
+        }
+    }
+
+    function connection(){
+        require_once("../view/connectView.php");
     }

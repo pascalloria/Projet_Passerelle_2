@@ -84,8 +84,8 @@ try {
                 modifyArticle($title_article, $article, $id_article);
             } else {     
                 upArticleForm($id_article);    
-            } 
-        
+
+            }        
         
         
         } else if ($_GET['page'] === 'inscription') {
@@ -121,13 +121,11 @@ try {
             register();
 
         } else if ($_GET['page'] ==="connect" ){
-
-            var_dump($_POST);
             if(!empty($_POST["login"]) && !empty($_POST['password']))  {
                 $password = "12452".sha1(htmlspecialchars($_POST['password']))."24478";
                 connectUser(htmlspecialchars($_POST["login"]),$password);
             }         
-            connection();
+            connection();              
 
         } else {
             throw new Exception("Cette page n'existe pas");

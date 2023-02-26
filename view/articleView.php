@@ -51,9 +51,10 @@ ob_start();
                         <h4>Ajoutez un commentaire :</h4>
                     </div>
                     <div class="card-body">
-                        <textarea class="form-control" name="content" id="content" cols="10" rows="5" maxlength="1024" placeholder="Votre commentaire..."></textarea>
+                        <textarea id="com" class="form-control" name="content" id="content" cols="10" rows="7" maxlength="1024" placeholder="Votre commentaire..."></textarea>
                     </div>
-                    <div class="card-footer d-flex justify-content-end ">
+                    <div class="card-footer d-flex justify-content-end align-items-center gap-4">
+                        <div id="countCom"></div>
                         <div class="text-bg-dark rounded-3">
                             <button class="btn border p-2 btn-outline-light" name="addCom" type="submit">Ajouter</button>
                         </div>
@@ -88,9 +89,13 @@ ob_start();
 
         </div>
 </div>
-<script src="assets/js/showHidden.js"></script>
+
 <?php
-
 $content = ob_get_clean();
-
+ob_start(); ?>
+<script src="assets/js/showHidden.js"></script>
+<?php if(isset($_SESSION['id'])) {?>
+    <script src="assets/js/counterCom.js"></script>
+<?php } 
+$script = ob_get_clean();
 require('base.php');

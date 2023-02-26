@@ -9,8 +9,17 @@
     if ($_GET["success"] == 1) { ?>
 
         <p class="card m-2 p-1 bg-success d-inline-block"><?=$_GET["message"] ?></p>  
+    
 <?php }
-} ?>
+} 
+if (isset($_GET["error"])){
+    if ($_GET["error"] == 1) { ?>
+
+        <p class="card m-2 p-1 bg-danger d-inline-block"><?=$_GET["message"] ?></p>  
+
+<?php }
+}
+?>
     <div class="">
 
     

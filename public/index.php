@@ -76,7 +76,6 @@ try {
         } else if ($_GET['page'] === 'inscription') {
 
             if (!empty($_POST["login"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["password_two"])){
-                
                 // L'adresse email est-elle correcte ?
                 $email=htmlspecialchars( $_POST["email"]);                
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -97,12 +96,11 @@ try {
                     exit();
                 }
                 // login libre.
-                $login=htmlspecialchars($_POST["login"]);
-                if (!avalaibleLogin($login)){
+                $login=htmlspecialchars($_POST["login"]);               
+                if (!avalaibleLogin($login) == 1 ){                   
                     header('location: ?page=inscription&error=1&message=Le login n\'est pas disponible. Merci d\'en saisir un nouveau.');
                     exit();
-                }
-                echo "test";
+                }                
                 addUser($login,$password,$email) ;              
             }            
             register();
@@ -120,15 +118,7 @@ try {
                 modifyArticle($title_article, $article, $id_article);
             } else {     
                 upArticleForm($id_article);    
-            }         
-            
-        } else if ($_GET["page"]==="createProject"){    
-            if (!empty($_POST["title"] ) && !empty($_POST["content"]) && !empty($_POST["id_user"]) ){               
-                addProject(htmlspecialchars( $_POST["title"]),htmlspecialchars($_POST["content"]),htmlspecialchars($_POST["id_user"]));
-            } else {             
-                createProject();
             } 
-
 
         } else {
             throw new Exception("Cette page n'existe pas");

@@ -29,8 +29,6 @@ session_start();
         } 
         // view 
         require("../view/projectsView.php");  
-
-
     }
 
     function createProject() {
@@ -162,6 +160,14 @@ session_start();
         $commentarieManager = new CommentariesManager;
         $request = $commentarieManager->updateCommentarie($newContent, $id_com);
     }
+
+    function successMessage() {
+        $_SESSION['success'] = 1;
+    }
+    function clearMessage() {
+        unset($_SESSION['success']);
+    }
+
     function redirectArticles() {
         header('location:index.php?page=articles');
         exit();
@@ -172,22 +178,21 @@ session_start();
         exit();
     }
 
+
+
     // user  
-
-
     function register(){
         require("../view/signInView.php");
     }
 
     function avalaibleLogin($login){
         $user = new UserManagers;
-        $req= $user->avalaibleLogin($login);        
-        while ($res =$req->fetch()){
-            if ($res["loginNumber"] != 0){
-               return false;
-            }			
-        }        
-    }
+        $request= $user->avalaibleLogin($login);             
+        if ($request === 0){
+            return	true;
+        }	        
+    }        
+    
 
     function addUser($login,$password,$email,){
 
@@ -203,3 +208,6 @@ session_start();
             exit();
         }        
     }
+
+
+

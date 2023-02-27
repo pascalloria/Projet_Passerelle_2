@@ -20,7 +20,7 @@
                     throw new Exception("La taille de l'image ne dois pas etre supérieur à 3 Mo");
                 };            
             } else {
-                throw new Exception("Une erreur à eue lieux");
+                throw new Exception("Une erreur à eue lieux : Error n° ".$_FILES["img"]["error"]);
             }             
         }
     }

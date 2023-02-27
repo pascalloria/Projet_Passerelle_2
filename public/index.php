@@ -34,8 +34,8 @@ try {
         } else if ($_GET["page"] === "updateBddProject"){
             if ($user->isAdmin() == 1){ 
                 // Upload de l'image et recuperation du nom dans la variabel $img                          
-                if (!empty($_FILES["img"])){                
-                    $img=$project->uploadImage();                
+                if (!empty($_FILES["img"]["size"] && !$_FILES["img"]["size"] == 0)){                              
+                    $img=$project->uploadImage();                                  
                 } 
                 // si aucun nouvelle image n'est proposé, on récupere le nom de l'image déja présente.
                 if ($img == ""){                

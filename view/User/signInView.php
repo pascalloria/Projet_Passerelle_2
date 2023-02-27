@@ -48,5 +48,5 @@ if (isset($_GET["error"])){
 </div> 
 <?php 
 $content = ob_get_clean();
-require_once("base.php");
+require_once("../view/base.php");
 ?>

@@ -1,7 +1,7 @@
 <?php
-require_once('Manager.php');
+require_once('DataBaseManager.php');
 
-class ArticleManager Extends Manager {
+class ArticleManager Extends DBManager {
 
     public function getAllArticles() {
         $request = $this->getAll('articles');

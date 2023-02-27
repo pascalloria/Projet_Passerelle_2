@@ -25,13 +25,8 @@
             <p>
                 <label  class="form-label" for="content"><h3>Texte :</h3></label>
                 <textarea class="form-control" name="content" id="content" cols="50" rows="10"><?= $project["content"] ?></textarea>
-            </p>   
-
-            
-            <p>
-                <label class="form-label" for="id_user">auteur :</label>
-                <input class="form-control-sm" name="id_user" id="id_user" value="<?= $project["id_user"] ?>" placeholder="auteur"></textarea>
-            </p>
+            </p>               
+          
             <!-- le contenu de $button evolue selon que ce soit une creation ou une modification -->
             <?= $button ?>
         </form> 

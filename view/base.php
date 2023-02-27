@@ -34,7 +34,7 @@
                             <a href="#" class="nav-link">Contact</a>
                         </li>
 
-                        <?php if (isset($_SESSION["id"])){ ?>
+                        <?php if (!empty($_SESSION["id"])){ ?>
                             <li class="nav-item">
                                 <a href="index.php?page=profil" class="nav-link">Profil</a>
                             </li>

@@ -1,12 +1,12 @@
 <?php
-require_once('Manager.php');
+require_once("DataBaseManager.php");
 
-class Checker extends Manager
+class Checker extends DBManager
 {
 
   public  static function getAuthor($table, $id_user)
   {
-    $bdd = new Manager;
+    $bdd = new DBManager;
     $request = $bdd->connection();
     $result = $request->query(' SELECT users.login, users.rank FROM users INNER JOIN ' . $table . ' ON users.id = ' . $id_user);
     $author = $result->fetch(PDO::FETCH_ASSOC);
@@ -20,7 +20,7 @@ class Checker extends Manager
 
   public static function articleGotComs($id_article)
   {
-    $bdd = new Manager;
+    $bdd = new DBManager;
     $request = $bdd->connection();
     $result = $request->query('SELECT * FROM commentaries WHERE id_article= ' . $id_article);
     $count = $result->rowCount();

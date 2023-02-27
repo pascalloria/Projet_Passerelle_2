@@ -1,36 +1,136 @@
 
 <?php
 
-require_once ("Manager.php");
 
+class UsersManager  {   
 
-class UserManagers extends Manager {   
+    const TABLE_NAME = "users";
+    private int $id;
+    private string $login;
+    private string $password;
+    private string $email;
+    private string $rank;
+    private string $register_date;
+    
+  
 
-    public function getAllUser() {
-        $requete = $this->getAll("users");
-        return $requete;
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
+    {
+        return $this->id;
     }
 
-    public function addUserBdd($login,$password,$email,$rank="user"){
+    /**
+     * Set the value of id
+     *
+     * @return  self
+     */ 
+    public function setId($id)
+    {
+        $this->id = $id;
 
-        $bdd = $this->connection();
-        $requete = $bdd->prepare("INSERT INTO users (login, password, email,`rank`) VALUES (?,?,?,?)");      
-        $requete->execute([$login,$password,$email,$rank]);
-        return $requete;
+        return $this;
     }
 
-    public function avalaibleLogin($login){
-        $bdd = $this->connection();
-        $requete = $bdd->prepare("SELECT * FROM users WHERE login = ? ");
-        $requete->execute([$login]);
-        return $requete->rowCount();       
+    /**
+     * Get the value of login
+     */ 
+    public function getLogin()
+    {
+        return $this->login;
     }
 
-    public function connectUser($login, $password){
-        $bdd = $this-> connection();
-        $requete = $bdd->prepare("SELECT * FROM users WHERE login= ? and password= ?");
-        $requete->execute([$login,$password]);
-        return $requete;
+    /**
+     * Set the value of login
+     *
+     * @return  self
+     */ 
+    public function setLogin($login)
+    {
+        $this->login = $login;
+
+        return $this;
     }
 
+    /**
+     * Get the value of password
+     */ 
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * Set the value of password
+     *
+     * @return  self
+     */ 
+    public function setPassword($password)
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of email
+     */ 
+    public function getEmail()
+    {
+        return $this->email;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @return  self
+     */ 
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of rank
+     */ 
+    public function getRank()
+    {
+        return $this->rank;
+    }
+
+    /**
+     * Set the value of rank
+     *
+     * @return  self
+     */ 
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of register_date
+     */ 
+    public function getRegister_date()
+    {
+        return $this->register_date;
+    }
+
+    /**
+     * Set the value of register_date
+     *
+     * @return  self
+     */ 
+    public function setRegister_date($register_date)
+    {
+        $this->register_date = $register_date;
+
+        return $this;
+    }
  }

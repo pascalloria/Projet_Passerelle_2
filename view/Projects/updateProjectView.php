@@ -3,7 +3,7 @@
     if (isset($request)){
         // on recupere les données du projets
         $project = $request->fetch();     
-        $_SESSION["id"]  = $project["id"];
+        $_SESSION["Project_id"]  = $project["id"];
         $_SESSION['img'] = $project["img"];
     }else {
        exit();
@@ -18,5 +18,5 @@
     require_once("formProjectView.php");
     $content = ob_get_clean();
     // Appel de base.php
-    require_once("base.php");
+    require_once("../view/base.php");
 ?>

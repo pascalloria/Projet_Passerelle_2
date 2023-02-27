@@ -1,8 +1,8 @@
 <?php
 
-require_once('Manager.php');
+require_once("DataBaseManager.php");
 
-class CommentariesManager extends Manager {
+class CommentariesManager extends DBManager {
     public function getAllComs() {
         $request = $this->getAll('commentaries');
         return $request;

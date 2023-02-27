@@ -69,8 +69,7 @@ class UsersController extends AbstractController{
 
     function isAdmin(){
         if (!empty($_SESSION["id"])){   
-            $user=Checker::getNameAndRank($_SESSION["id"]);
-            var_dump($_SESSION["id"]);
+            $user=Checker::getNameAndRank($_SESSION["id"]);            
             if ($user["rank"] == "admin"){
                 return true;
             }

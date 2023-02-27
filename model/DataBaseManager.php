@@ -1,6 +1,6 @@
 <?php
 
-class Manager {
+class DBManager {
 
     protected function connection () {
         try {
@@ -17,10 +17,5 @@ class Manager {
         return $requete;
         
     }
-
-
-    
-
-
     
 }

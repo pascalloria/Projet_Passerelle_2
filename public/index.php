@@ -1,34 +1,51 @@
 <?php
 
 require_once("../controller/controller.php");
+require_once("../controller/ProjectController.php");
+require_once("../controller/UserController.php");
+
 
 try {
     //clearMessage();
     if (!empty($_GET["page"])) {
-        if ($_GET["page"] === "home") {
-            home();                    
+        $project = new ProjectController(new ProjectRepository);
+        $user = new UsersController(new UsersRepository);
+
+
+        if ($_GET["page"] === "home") {            
+            $project->home();                                
         } else if ($_GET["page"] === "createProject"){  
-            // Upload de l'image et recuperation du nom dans la variabel $img                   
-            if (!empty($_FILES["img"])){                
-                $img=uploadImage();
-            } 
-            // insertion des donné du projet dans la BDD projects
-            if (!empty($_POST["title"] ) && !empty($_POST["content"]) && !empty($_POST["id_user"]) ){               
-                addProject(htmlspecialchars($_POST["title"]),htmlspecialchars($_POST["content"]),htmlspecialchars($_POST["id_user"]),$img);
-            } else {             
-                createProject();                
-            }              
-        } else if ($_GET["page"] === "updateBddProject"){   
-            // Upload de l'image et recuperation du nom dans la variabel $img                          
-            if (!empty($_FILES["img"])){                
-                $img=uploadImage();                
-            } 
-            // si aucun nouvelle image n'est proposé, on récupere le nom de l'image déja présente.
-            if ($img == ""){                
-                $img= $_SESSION["img"];
-            } 
-            // remplacement dans la table projects des informations modifié par l'utilisateur.
-            updateBddProject(htmlspecialchars($_POST["title"]),htmlspecialchars($_POST["content"]),htmlspecialchars($_POST["id_user"]), $_SESSION["id"],$img);
+            // verifions si l'utilisateur est admin
+            if ($user->isAdmin() == 1){
+                // Upload de l'image et recuperation du nom dans la variabel $img                   
+                if (!empty($_FILES["img"])){                
+                    $img=$project->uploadImage();
+                } 
+                // insertion des données du projet dans la BDD "projects"
+                if (!empty($_POST["title"] ) && !empty($_POST["content"]) ){                               
+                    $project->addProject(htmlspecialchars($_POST["title"]),htmlspecialchars($_POST["content"]),$img);
+                } else {          
+                    // affice la vue CreateProjectView
+                    $project->createProject();                
+                }    
+            }  else {
+               throw new Exception("Vous n'avez pas les droits requis pour réaliser cette action. Veuillez contactez un administrateur");
+            }        
+        } else if ($_GET["page"] === "updateBddProject"){
+            if ($user->isAdmin() == 1){ 
+                // Upload de l'image et recuperation du nom dans la variabel $img                          
+                if (!empty($_FILES["img"])){                
+                    $img=$project->uploadImage();                
+                } 
+                // si aucun nouvelle image n'est proposé, on récupere le nom de l'image déja présente.
+                if ($img == ""){                
+                    $img= $_SESSION["img"];
+                } 
+                // remplacement dans la table projects des informations modifié par l'utilisateur.
+                $project->updateBddProject(htmlspecialchars($_POST["title"]),htmlspecialchars($_POST["content"]), $_SESSION["Project_id"],$img);
+            }  else {
+                throw new Exception("Vous n'avez pas les droits requis pour réaliser cette action. Veuillez contactez un administrateur");
+            }   
         
         } else if ($_GET['page'] === 'new-article') {
 
@@ -112,27 +129,30 @@ try {
                 }
                 // login libre.
                 $login=htmlspecialchars($_POST["login"]);               
-                if (!avalaibleLogin($login) == 1 ){                   
+                if (!$user->avalaibleLogin($login) == 1 ){                   
                     header('location: ?page=inscription&error=1&message=Le login n\'est pas disponible. Merci d\'en saisir un nouveau.');
                     exit();
                 }                
-                addUser($login,$password,$email) ;              
+                $user->addUser($login,$password,$email) ;              
             }            
-            register();
+            $user->register();
 
         } else if ($_GET['page'] ==="connect" ){
             if(!empty($_POST["login"]) && !empty($_POST['password']))  {
                 $password = "12452".sha1(htmlspecialchars($_POST['password']))."24478";
-                connectUser(htmlspecialchars($_POST["login"]),$password);
+                $user->connectUser(htmlspecialchars($_POST["login"]),$password);
             }         
-            connection();              
-
+            $user->connection();   
+        } else if ($_GET['page'] ==="logout" ){
+            $user->logout();
         } else {
             throw new Exception("Cette page n'existe pas");
         }
     
     } else {
-        home();
+        $project = new ProjectController(new ProjectRepository);
+        $project->home();     
+        
     } 
     
    

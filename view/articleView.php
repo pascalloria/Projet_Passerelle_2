@@ -56,7 +56,7 @@ ob_start();
                     <div class="card-footer d-flex justify-content-end align-items-center gap-4">
                         <div id="countCom"></div>
                         <div class="text-bg-dark rounded-3">
-                            <button class="btn border p-2 btn-outline-light" name="addCom" type="submit">Ajouter</button>
+                            <button id="comBtn" class="btn border p-2 btn-outline-light" name="addCom" type="submit">Ajouter</button>
                         </div>
                     </div>
                 </div>

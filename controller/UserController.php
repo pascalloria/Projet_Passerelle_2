@@ -1,17 +1,9 @@
 <?php
-require_once("../repository/UsersRepository.php");
 
-// class AbstractController {
+require_once("../model/UsersRepository.php");
 
-//     public function render($templateName, $variables) {
-//         ob_start();
-//         $vars = $variables;
-//         require('../templates/'.$templateName.'.php');
-//         ob_clean();
-//     }
-// }
 
-class UsersController extends AbstractController{
+class UsersController {
 
     public function __construct (private readonly UsersRepository $usersRepository) {}
 // user  

@@ -1,6 +1,5 @@
 <?php
 $title = "Article";
-// $_SESSION['id'] = 2; //je simule un utilisateur connecté !
 
 ob_start();
 ?>
@@ -63,7 +62,7 @@ ob_start();
             </form>
         <?php } else { ?>
             <div class="alert alert-warning d-flex justify-content-center align-items-center">
-                <p>Vous devez être connecté pour pouvoir répondre: <a href="#" class="btn btn-link    mx-2">Se Connecter</a></p>
+                <p>Vous devez être connecté pour pouvoir répondre: <a href="index.php?page=connect" class="btn btn-link    mx-2">Se Connecter</a></p>
             </div>
         <?php }
 
@@ -98,4 +97,4 @@ ob_start(); ?>
     <script src="assets/js/counterCom.js"></script>
 <?php } 
 $script = ob_get_clean();
-require('base.php');
+require('../view/base.php');

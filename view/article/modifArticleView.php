@@ -26,5 +26,6 @@ ob_start();
 
 <?php }
     $content = ob_get_clean();
-    require_once("base.php");
+    require('../view/base.php');
+
 ?>

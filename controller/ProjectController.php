@@ -1,18 +1,12 @@
 <?php
 
-require_once("../repository/ProjectRepository.php");
+require_once("../model/ProjectRepository.php");
+require_once("../model/ImageManager.php");
+ 
 
-class AbstractController {
 
-    public function render($templateName, $variables) {
-        ob_start();
-        $vars = $variables;
-        require('../templates/'.$templateName.'.php');
-        ob_clean();
-    }
-}
 
-class ProjectController extends AbstractController{
+class ProjectController {
     
     public function __construct (private readonly ProjectRepository $projectRepository) {}
 

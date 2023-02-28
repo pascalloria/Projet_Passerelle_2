@@ -1,15 +1,9 @@
 
 <?php
 session_start();
-    require_once("../model/ProjectManager.php");
-    require_once("../model/ArticleManager.php");
+ 
     require_once('../model/Checker.php');
     require_once('../model/DateFr.php');
-    require_once('../model/CommentariesManager.php');
-    require_once("../model/ImageManager.php");
-    require_once("../model/UsersManager.php");
-
-    
   
 // article
     function articles() {

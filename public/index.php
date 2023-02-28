@@ -1,6 +1,6 @@
 <?php
-
-require_once("../controller/controller.php");
+require_once('../controller/controller.php');
+require_once("../controller/ArticleController.php");
 require_once("../controller/ProjectController.php");
 require_once("../controller/UserController.php");
 
@@ -10,7 +10,7 @@ try {
     if (!empty($_GET["page"])) {
         $project = new ProjectController(new ProjectRepository);
         $user = new UsersController(new UsersRepository);
-
+        $article = new ArticleController(new ArticleRepository);
 
         if ($_GET["page"] === "home") {            
             $project->home();                                
@@ -48,18 +48,23 @@ try {
             }   
         
         } else if ($_GET['page'] === 'new-article') {
+            if(isset($_SESSION['id'])) {
 
-            if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                $title_article = htmlspecialchars($_POST['title']);
-                $article = htmlspecialchars($_POST['content']);
-                $id = $_SESSION['id'];
-                addArticle($title_article, $article, $id);
+                if (!empty($_POST['title']) && !empty($_POST['content'])) {
+                    $title_article = htmlspecialchars($_POST['title']);
+                    $content = htmlspecialchars($_POST['content']);
+                    $id = $_SESSION['id'];
+                    $article->addArticle($title_article, $content, $id);
+                } else {
+                    $article->newArticleForm();
+                }
             } else {
-                newArticleForm();
+                header('location:index.php?page=articles');
+                exit();
             }
         } else if ($_GET['page'] === 'articles') {
-            clearMessage();
-            articles();
+            // clearMessage();
+            $article->articles();
         } else if ($_GET['page'] === 'article') {            
             if (!empty($_POST['article'])) {
                 // on récupère l'id de l'article pour afficher la bonne page et les bons commentaires
@@ -71,25 +76,25 @@ try {
                 // on ajoute un commentaire, en récuperant au passage les supers globales 
                 //de SESSION -> ['id_article'] et ['id'] (c'est l'utilisateur connecté)
                 // car nos variables se perdent lors du routing
-                successMessage("contenue mis a jour");
-                addCommentarie($content, $_SESSION['id_article'], $_SESSION['id']);
+                // successMessage("contenue mis a jour");
+                $article->addCommentarie($content, $_SESSION['id_article'], $_SESSION['id']);
              
             } else if (!empty($_POST['delete-art'])) {
                 $id_article = htmlspecialchars($_POST['delete-art']);
-                eraseArticle($id_article);
+                $article->eraseArticle($id_article);
                 redirect("index.php?page=articles");
             } else if (!empty($_POST['delete-com'])) {
                 $id_com = htmlspecialchars($_POST['delete-com']);
-                eraseCommentarie($id_com);
-                article($_SESSION['id_article']);
+                $article->eraseCommentarie($id_com);
+                $article->article($_SESSION['id_article']);
             } else if (!empty($_POST['update-com']) && !empty($_POST['content-com'])) {
                 $newContent = htmlspecialchars($_POST['content-com']);
                 $id_com = htmlspecialchars($_POST['update-com']);
-                updateCom($newContent, $id_com);
-                article($_SESSION['id_article']);
+                $article->updateCom($newContent, $id_com);
+                $article->article($_SESSION['id_article']);
             }
             else {
-                article($_SESSION['id_article']);
+                $article->article($_SESSION['id_article']);
             }
 
         } else if ($_GET['page'] === 'up-article') {        
@@ -97,10 +102,10 @@ try {
             
             if (!empty($_POST['title']) && !empty($_POST['content'])) {
                 $title_article = htmlspecialchars($_POST['title']);
-                $article = htmlspecialchars($_POST['content']);
-                modifyArticle($title_article, $article, $id_article);
+                $content = htmlspecialchars($_POST['content']);
+                $article->modifyArticle($title_article, $content, $id_article);
             } else {     
-                upArticleForm($id_article);    
+                $article->upArticleForm($id_article);    
 
             }        
         

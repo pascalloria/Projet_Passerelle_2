@@ -1,6 +1,6 @@
 <?php
     if(!empty($_SESSION["id"])){
-        $user=Checker::getNameAndRank($_SESSION["id"]);
+        $user=Checker::getLoginAndRank($_SESSION["id"]);
     }
     $title = "Acceuil";
     ob_start();

@@ -61,7 +61,7 @@ class UsersController {
 
     function isAdmin(){
         if (!empty($_SESSION["id"])){   
-            $user=Checker::getNameAndRank($_SESSION["id"]);            
+            $user=Checker::getLoginAndRank($_SESSION["id"]);            
             if ($user["rank"] == "admin"){
                 return true;
             }

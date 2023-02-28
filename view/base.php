@@ -58,7 +58,7 @@
             </nav>   
         </div>
         <?php if (isset($_SESSION['id'])) {
-            $user = Checker::getNameAndRank($_SESSION['id'])?>
+            $user = Checker::getLoginAndRank($_SESSION['id'])?>
                 <div class="p-2 bg-light">
                     <div class="container d-flex justify-content-between">
                         <div>

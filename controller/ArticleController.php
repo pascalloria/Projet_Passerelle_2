@@ -1,6 +1,6 @@
 <?php
 require_once('../model/ArticleRepository.php');
-
+require_once('../model/Options.php');
 
 class ArticleController 
 {
@@ -18,7 +18,9 @@ class ArticleController
     function article($id_article) {
         $request = $this->articleRepository->getOneArticle($id_article); //variable utilisé dans la view pour fetch
         $coms = $this->articleRepository->getAllComsOfThisArticle($id_article); //variable utilisé dans la view pour fetch
+        $gear = new Options;
         require('../view/article/articleView.php');
+       
     }
 
     function addCommentarie($content, $id_article, $id_user) {
@@ -30,7 +32,8 @@ class ArticleController
             exit();
             
         } else {
-            header('location:index.php?page=article');
+            successMessage('Votre commentaire a été ajouté !');
+            redirect('index.php?page=article');
             exit();
         }
     }
@@ -52,7 +55,8 @@ class ArticleController
             exit();
             
         } else {
-            header('location:index.php?page=articles');
+            successMessage('Votre article a été ajouté !');
+            redirect('index.php?page=articles');
             exit();
         }
     }
@@ -62,16 +66,18 @@ class ArticleController
         $request = $this->articleRepository->getOneArticle($id_article);
         $upArticle = $this->articleRepository->updateArticle($title_article,$content,$id_article);
         if(!$request || !$upArticle) {
-            throw new Exception("Impossible d'ajouter votre avis pour le moment");
+            throw new Exception("Impossible de modifier votre article pour le moment");
             
         } else {
-            header('location:index.php?page=article');
+            successMessage('Votre article a été modifié !');
+            redirect('index.php?page=article');
             exit();
         }
     }
     function eraseArticle($id_article) {
        
         $request = $this->articleRepository->deleteArticle($id_article);
+        
     }
     function eraseCommentarie($id_com) {
         

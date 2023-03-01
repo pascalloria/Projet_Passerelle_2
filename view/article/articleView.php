@@ -25,22 +25,23 @@ ob_start();
 
                 <p><?= $article['content'] ?> </p>
             </div>
-            <div class="card-footer d-flex align-items-center justify-content-end gap-4">
-                <div data-bs-toggle="tooltip" data-bs-placement="top" title="commentaires">
-                    <?= Checker::articleGotComs($article['id']) ?><i class="mx-2 fa-regular fa-comment"></i>
-                </div>
-            </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <div>
                     <p>Ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span> </p>
-                    <p>Le : <?= DateToFr::dateFR($article['date']) ?> </p>
                 </div>
                 <div class="text-bg-dark rounded-3">
                     <div id="btnCom" class="btn border p-2 btn-outline-light  ">
-                        <small class="showMe"> Voir les commentaires</small>
+
+                        <div data-bs-toggle="tooltip" data-bs-placement="top" title="commentaires">
+                            <small class="showMe me-2">Afficher</small><?= Checker::articleGotComs($article['id']) ?><i class="mx-2 fa-regular fa-comment"></i>
+                        </div>
                     </div>
                 </div>
 
+
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <p>Le : <?= DateToFr::dateFR($article['date']) ?> </p>
             </div>
         </div>
         <div class="showHidden d-none mb-5">
@@ -70,15 +71,23 @@ ob_start();
         </div>
         <div>
             <?php if (isset($_SESSION['id'])) { ?>
-                <div id="bubble" class="fixed-bottom d-flex justify-content-end align-items-center mb-3 me-md-5">
-                    <div class="btn rounded-pill  p-3 text-white  bg-dark bg-opacity-75" data-bs-toggle="tooltip" data-bs-placement="top" title="Ouvrir">
+                <div id="bubble" class="fixed-bottom d-flex justify-content-end align-items-center mb-5 me-md-5">
+                    <div class="btn rounded-pill border border-3 border-danger  p-3 text-white  bg-dark " data-bs-toggle="tooltip" data-bs-placement="top" title="Ouvrir">
                         <i class="fa-solid fa-comments fs-4"></i>
                     </div>
                 </div>
                 <form class="form" method="post" action="index.php?page=article">
 
-                    <div id="messenger" class="d-none d-flex flex-column fixed-bottom rounded-top col-md-8 col-lg-10 mx-auto bg-dark pb-2 px-1 px-md-4 rounded-md-top">
-                        <div id="closeMessenger" class="btn btn-close btn-close-white align-self-end pt-5"></div>
+                    <div id="messenger" class="d-none d-flex flex-column fixed-bottom mb-md-2 rounded col-md-8 col-lg-10 mx-auto bg-dark pb-2 px-1 px-md-4 rounded-md-top border border-3 border-danger">
+                        <div class=" d-flex justify-content-between align-items-center my-2 ">
+                            <div id="title-messenger" class="text-danger ms-2">
+                                <h5> Votre meilleur commentaire</h5>
+                            </div>
+                            <div class="bg-black rounded-pill border-0 ">
+                                <button id="closeMessenger" type="button" class="btn btn-close btn-close-white btn-outline-light p-2 rounded-pill fs-4"></button>
+                            </div>
+
+                        </div>
                         <div class="d-flex align-items-center gap-2">
                             <textarea id="com" class="form-control rounded-pill" name="content" id="content" cols="10" rows="1" maxlength="1024" placeholder="Votre commentaire..."></textarea>
 

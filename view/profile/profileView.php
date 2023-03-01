@@ -79,11 +79,14 @@ ob_start();
                 <span>Cliquez pour être redirigé sur le projet</span>
             </div>
             <?php while ($result = $projects->fetch()) { ?>
-                <form action="index.php?page=article" method="post">
+                <form action="index.php" method="post">
                     <div class="border rounded my-4">
-                        <button class="btn w-100" type="submit" name="project" value="<?= $result['id'] ?>">
+                        <button class="rounded w-100" type="submit" name="project" value="<?= $result['id'] ?>">
                             <div class="mt-2"><span>Ecrit le : <?= DateToFr::dateFR($result['date']) ?></span> </div>
-                            <div class="bg-white w-100">
+                            <hr>
+                            <div class="w-100">
+                                <p>Titre : <?= $result['title']?></p>
+                                <hr>
                                 <p class="text-truncate"><?= $result['content'] ?></p>
                             </div>
                         </button>

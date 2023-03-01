@@ -1,28 +1,17 @@
 const text = document.querySelector('.showMe');
-// const com = document.querySelector('#com');
-// déjà déclaré dans l'autre script
 const btnCom = document.querySelector('#btnCom');
 const div = document.querySelector('.showHidden');
 const bubble = document.querySelector('#bubble');
 const messenger = document.querySelector('#messenger');
-
+const titleMessenger = document.querySelector('#title-messenger');
+const closeMessenger = document.querySelector('#closeMessenger');
 
 btnCom.addEventListener('click', () => {
     div.classList.toggle('d-none');
-    if (text.textContent == 'Cacher les commentaires') {
-        text.textContent= 'Afficher les commentaires';
+    if (text.textContent == 'Cacher') {
+        text.textContent= 'Afficher';
     } else {
-        text.textContent= 'Cacher les commentaires';
-    }
-});
-
-com.addEventListener('keyup', () => {
-    if(com.value != 0) {
-        closeMessenger.classList.add('d-none');
-        messenger.classList.add('pt-4');
-    } else {
-        closeMessenger.classList.remove('d-none');
-        messenger.classList.remove('pt-4');
+        text.textContent= 'Cacher';
     }
 });
 

@@ -14,13 +14,13 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
     <script src="https://kit.fontawesome.com/2847cc80c5.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="d-flex flex-column">
+<body class="d-flex flex-column text-danger">
 
-    <header class="bg-primary">
-        <div class="container">
+    <header class="bg-color1">
+        <div class="container h-100">
             <nav class="navbar  navbar-expand-md">
                 <div class="navbar-brand">
-                    <h1> The blog</h1>
+                    <h1> Diablo 4 Blog</h1>
                 </div><!-- Le bouton s'affichera en petit écran -->
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#monMenuDeroulant">
                     <span class="navbar-toggler-icon"></span>

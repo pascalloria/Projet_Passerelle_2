@@ -11,12 +11,14 @@ ob_start();
     }
     while ($article = $request->fetch()) {
         $author = Checker::getAuthor("articles", $article['id_user']);
+        
+
     ?>
         <div class="card  mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h1><?= $article['title'] ?></h1>
                 <div>
-                    <?= $gear->controls($article['id_user'], $article['id'], $article['content'],$user['rank'], true); ?>
+                    <?php if (isset($_SESSION['id'])) echo $gear->controls($article['id_user'], $article['id'], $article['content'],$user['rank'], true); ?>
                 </div>
             </div>
             <div class="card-body">
@@ -47,13 +49,14 @@ ob_start();
             while ($commentaries = $coms->fetch()) {
 
             $authorCom = Checker::getAuthor("commentaries", $commentaries['id_user']);
+            
             ?>
 
             <div class="card col-md-8 col-lg-10 mx-auto mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4><span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?></h4>
                     <div>
-                        <?= $gear->controls($commentaries['id_user'], $commentaries['id'], $commentaries['content'], $user['rank']); ?>
+                        <?php if (isset($_SESSION['id'])) echo $gear->controls($commentaries['id_user'], $commentaries['id'], $commentaries['content'], $user['rank']); ?>
                     </div>
                 </div>
                 <div class="card-body">

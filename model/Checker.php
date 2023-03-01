@@ -37,4 +37,12 @@ class Checker extends DBManager
   {
     return ($rank === 'admin') ? 'text-danger' : 'text-primary';
   }
+
+  public static function getMyScore($id_user) {
+    $bdd = new Checker;
+    $req = $bdd->connection();
+    $coms = $req->query("SELECT * FROM commentaries WHERE id_user = $id_user");
+    $result= $coms->rowCount() * 10;
+    return $result;
+  }
 }

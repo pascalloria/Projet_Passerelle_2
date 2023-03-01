@@ -3,7 +3,7 @@ require_once('../controller/controller.php');
 require_once("../controller/ArticleController.php");
 require_once("../controller/ProjectController.php");
 require_once("../controller/UserController.php");
-
+require_once('../controller/ProfileController.php');
 
 try {
     //clearMessage();
@@ -11,6 +11,7 @@ try {
         $project = new ProjectController(new ProjectRepository);
         $user = new UsersController(new UsersRepository);
         $article = new ArticleController(new ArticleRepository);
+        $profile = new ProfileController(new ProfileRepository);
 
         if ($_GET["page"] === "home") {            
             $project->home();                                
@@ -63,7 +64,7 @@ try {
                 exit();
             }
         } else if ($_GET['page'] === 'articles') {
-            // clearMessage();
+            clearMessage();
             $article->articles();
         } else if ($_GET['page'] === 'article') {            
             if (!empty($_POST['article'])) {
@@ -110,6 +111,13 @@ try {
             }        
         
         
+        } else if ($_GET['page'] === 'profil') {
+            if(isset($_SESSION['id'])) {
+                clearMessage();               
+                $profile->getMyContent($_SESSION['id']);
+            } else {
+                redirect("index.php");
+            }
         } else if ($_GET['page'] === 'inscription') {
 
             if (!empty($_POST["login"]) && !empty($_POST["email"]) && !empty($_POST["password"]) && !empty($_POST["password_two"])){

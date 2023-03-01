@@ -11,14 +11,14 @@ ob_start();
     }
     while ($article = $request->fetch()) {
         $author = Checker::getAuthor("articles", $article['id_user']);
-        
+
 
     ?>
         <div class="card  mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
                 <h1><?= $article['title'] ?></h1>
                 <div>
-                    <?php if (isset($_SESSION['id'])) echo $gear->controls($article['id_user'], $article['id'], $article['content'],$user['rank'], true); ?>
+                    <?php if (isset($_SESSION['id'])) echo $gear->controls($article['id_user'], $article['id'], $article['content'], $user['rank'], true); ?>
                 </div>
             </div>
             <div class="card-body">
@@ -43,16 +43,16 @@ ob_start();
 
             </div>
         </div>
-        <div class="showHidden d-none">
+        <div class="showHidden d-none mb-5">
         <?php }
 
-            while ($commentaries = $coms->fetch()) {
+    while ($commentaries = $coms->fetch()) {
 
-            $authorCom = Checker::getAuthor("commentaries", $commentaries['id_user']);
-            
-            ?>
+        $authorCom = Checker::getAuthor("commentaries", $commentaries['id_user']);
 
-            <div class="card col-md-8 col-lg-10 mx-auto mb-4">
+        ?>
+
+            <div class="card col-md-8 col-lg-10 mx-auto mb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4><span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?></h4>
                     <div>
@@ -70,28 +70,29 @@ ob_start();
         </div>
         <div>
             <?php if (isset($_SESSION['id'])) { ?>
-
+                <div id="bubble" class="fixed-bottom d-flex justify-content-end align-items-center mb-3 me-md-5">
+                    <div class="btn rounded-pill  p-3 text-white  bg-dark bg-opacity-75" data-bs-toggle="tooltip" data-bs-placement="top" title="Ouvrir">
+                        <i class="fa-solid fa-comments fs-4"></i>
+                    </div>
+                </div>
                 <form class="form" method="post" action="index.php?page=article">
 
-                    <div class="card col-md-8 col-lg-10 mx-auto mb-4">
-                        <div class="card-header d-flex justify-content-between align-items-center">
-                            <h4>Ajoutez un commentaire :</h4>
-                        </div>
-                        <div class="card-body">
-                            <textarea id="com" class="form-control" name="content" id="content" cols="10" rows="2" maxlength="1024" placeholder="Votre commentaire..."></textarea>
-                        </div>
-                        <div class="card-footer d-flex justify-content-end align-items-center gap-4">
-                            <div id="countCom"></div>
-                            <div class="text-bg-dark rounded-3">
-                                <button id="comBtn" class="btn border p-2 btn-outline-light" name="addCom" type="submit">Ajouter</button>
+                    <div id="messenger" class="d-none d-flex flex-column fixed-bottom rounded-top col-md-8 col-lg-10 mx-auto bg-dark pb-2 px-1 px-md-4 rounded-md-top">
+                        <div id="closeMessenger" class="btn btn-close btn-close-white align-self-end pt-5"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <textarea id="com" class="form-control rounded-pill" name="content" id="content" cols="10" rows="1" maxlength="1024" placeholder="Votre commentaire..."></textarea>
+
+                            <div class="bg-black  rounded-pill border-0">
+                                <button id="comBtn" class="btn rounded-pill border-0 p-2 btn-outline-light" name="addCom" type="submit"><i class="fa-solid fa-paper-plane text-danger me-1"></i></button>
                             </div>
                         </div>
+                        <div id="countCom" class="m-0 p-0 text-white">1024 caractères restants.</div>
                     </div>
                 </form>
             <?php } else { ?>
-                <div  class=" col-md-8 col-lg-10 mx-auto ">
-                    <div class="p-2 border rounded-3 d-flex justify-content-center align-items-center ">
-                        <span >Vous devez être connecté pour pouvoir répondre:</span> <a href="index.php?page=connect" class="btn border btn-primary mx-2">Se Connecter</a>
+                <div class=" col-md-8 col-lg-10 mx-auto ">
+                    <div class="p-2  d-flex justify-content-center align-items-center gap-3 ">
+                        <span>Vous devez être connecté pour pouvoir répondre:</span> <a href="index.php?page=connect" class="btn border btn-primary mx-2">Se Connecter</a>
                     </div>
                 </div>
             <?php } ?>

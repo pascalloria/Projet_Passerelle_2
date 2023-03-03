@@ -1,7 +1,7 @@
 <form class="form" method="post" action="index.php?page=article">
 
     <!-- Dropdown (liste déroulante) -->
-    <div class="dropstart ">
+    <div class="dropstart">
         <!-- Bouton -->
         <button id="myButton-<?php echo $isArticle ? "art-" : "com-";echo $id_artOrCom ?>" class="btn" type="button" data-bs-toggle="dropdown">
             <i class="fa-sharp fa-solid fa-gear" data-bs-toggle="tooltip" data-bs-placement="top" title="Modifier"></i>

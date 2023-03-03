@@ -72,6 +72,11 @@ try {
                 $id_article = (int)htmlspecialchars($_POST['article']); // on le retransforme en int
                 $_SESSION['id_article'] = $id_article;
             }
+            if (!isset($_SESSION['id_article'])) {
+
+                redirect('index.php?page=articles'); //accesible uniquement avec un $_SESSION['id_article'] défini
+            }
+            
             if (!empty($_POST['content'])) {
                 $content = htmlspecialchars($_POST['content']);
                 // on ajoute un commentaire, en récuperant au passage les supers globales 

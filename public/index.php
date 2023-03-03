@@ -4,6 +4,8 @@ require_once("../controller/ArticleController.php");
 require_once("../controller/ProjectController.php");
 require_once("../controller/UserController.php");
 require_once('../controller/ProfileController.php');
+require_once("../controller/AdminController.php");
+
 
 try {
     //clearMessage();
@@ -12,6 +14,7 @@ try {
         $user = new UsersController(new UsersRepository);
         $article = new ArticleController(new ArticleRepository);
         $profile = new ProfileController(new ProfileRepository);
+        $admin = new AdminController(new AdminRepository);
 
         if ($_GET["page"] === "home") {            
             $project->home();                                
@@ -163,6 +166,24 @@ try {
             $user->connection();   
         } else if ($_GET['page'] ==="logout" ){
             $user->logout();
+        } else if ($_GET['page'] ==="admin" ){
+            if ($user->isAdmin() == 1){ 
+                if (!empty($_POST["promote"])){
+                    $admin->promoteAdmin(htmlspecialchars($_POST["promote"]));
+                }
+                if (!empty($_POST["demote"])){
+                    $admin->demoteUser(htmlspecialchars($_POST["demote"]));
+                }
+                if (!empty($_POST["delete"])){
+                    $admin->deleteUser(htmlspecialchars($_POST["delete"]));
+                }
+                if (!empty($_POST["erase"])){
+                    $admin->eraseUser(htmlspecialchars($_POST["erase"]));
+                }
+                $admin->getAllUsers();
+            }  else {
+                throw new Exception("Vous n'avez pas les droits requis pour réaliser cette action. Veuillez contactez un administrateur");
+            }
         } else {
             throw new Exception("Cette page n'existe pas");
         }

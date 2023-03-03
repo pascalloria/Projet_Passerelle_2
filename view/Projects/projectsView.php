@@ -6,7 +6,7 @@
     ob_start();
 ?>
 <div class="my-5">
-    <h2 class="text-center"> Projets </h2>
+    <h1> Projets </h1>
 <?php 
     if (isset($_GET["success"])){
     if ($_GET["success"] == 1) { ?>

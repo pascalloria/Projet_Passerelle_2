@@ -19,7 +19,7 @@
 // Option 2 : ajouter de nouvelles couleurs à B5 sans changer les comportements
 
 $color1: rgb(158, 0, 0);
-$color2: rgb(88, 83, 83);
+$color2: rgb(172, 170, 170);
 
 // on ajoute tout ça à B5
 $custom-colors: (
@@ -58,6 +58,10 @@ body{
 
 h1,h2,h3,.btn,.label,.alert {
     font-family: DiabloLight;
+}
+
+.container {
+    height: 100%;
 }
 
  

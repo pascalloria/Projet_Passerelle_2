@@ -4,7 +4,7 @@
 ?>
 
    
-    <div class="h-100 d-flex justify-content-center align-items-center">    
+    <div class="d-flex justify-content-center align-items-center containerCenter">    
         <?php 
             if (isset($_GET["success"])){
             if ($_GET["success"] == 1) { ?>

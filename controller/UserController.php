@@ -17,7 +17,14 @@ class UsersController {
         if ($request === 0){
             return	true;
         }	        
-    }        
+    }
+    function avalaibleEmail($email){
+        
+        $request= $this->usersRepository->avalaibleEmail($email);             
+        if ($request === 0){
+            return	true;
+        }	        
+    }              
     
 
     function addUser($login,$password,$email,){

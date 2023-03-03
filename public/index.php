@@ -136,7 +136,10 @@ try {
                     exit();
                 }                
                 // L'email n'est pas deja enregistrer ? 
-
+                if (!$user->avalaibleEmail($email) == 1){
+                    header('location: ?page=inscription&error=1&message=Cette adresse email est deja enregistré. Merci d\'en saisir une nouvelle.');
+                    exit();
+                }
                 
                 // Les passwords correspond t'il ?
                 if ($_POST["password"] === $_POST["password_two"]){

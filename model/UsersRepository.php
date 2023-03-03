@@ -27,6 +27,13 @@ class UsersRepository extends DBManager {
         return $requete->rowCount();       
     }
 
+    public function avalaibleEmail($email){
+        $bdd = $this->connection();
+        $requete = $bdd->prepare("SELECT * FROM ".$this::TABLE_NAME." WHERE email = ? ");
+        $requete->execute([$email]);
+        return $requete->rowCount();       
+    }
+
     public function connectUser($login, $password){
         $bdd = $this-> connection();
         $requete = $bdd->prepare("SELECT * FROM ".$this::TABLE_NAME." WHERE login= ? and password= ?");

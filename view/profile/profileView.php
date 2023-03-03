@@ -8,7 +8,7 @@ ob_start();
 <div class="my-5 d-flex flex-column justify-content-center align-items-center">
     <div class="col-12 col-md-8 col-lg-6 ">
 
-        <form action="index.php?page=profile" method="post">
+        <form action="index.php?page=profil" method="post">
             <div class="container rounded p-4 bg-primary">
 
                 <h1 class="text-center"><i class="fa-regular fa-id-badge me-1"></i> Profil</h1>

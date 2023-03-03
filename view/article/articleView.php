@@ -23,7 +23,7 @@ ob_start();
             </div>
             <div class="card-body">
 
-                <p><?= $article['content'] ?> </p>
+                <div id="text-art"><?= $article['content'] ?> </div>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <div>
@@ -89,7 +89,8 @@ ob_start();
 
                         </div>
                         <div class="d-flex align-items-center gap-2">
-                            <textarea id="com" class="form-control rounded-pill" name="content" id="content" cols="10" rows="1" maxlength="1024" placeholder="Votre commentaire..."></textarea>
+                            <!-- utilisation d'un input pour un meilleur UX p/r a un textarea -->
+                            <input type="text" id="com" class="btn-outline-danger form-control rounded-pill" name="content" id="content"  maxlength="1024" placeholder="Votre commentaire...">
 
                             <div class="bg-black  rounded-pill border-0">
                                 <button id="comBtn" class="btn rounded-pill border-0 p-2 btn-outline-light" name="addCom" type="submit"><i class="fa-solid fa-paper-plane text-danger me-1"></i></button>
@@ -113,6 +114,7 @@ ob_start();
 $content = ob_get_clean();
 ob_start(); ?>
 <script src="assets/js/showHidden.js"></script>
+<script src="assets/js/textFormatKeeper.js"></script>
 <?php if (isset($_SESSION['id'])) { ?>
     <script src="assets/js/counterCom.js"></script>
 <?php }

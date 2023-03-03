@@ -69,11 +69,11 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
             
              ?>
             <div class="p-2 bg-light">
-                <div class="container d-flex justify-content-between flex-wrap">
+                <div class="container d-flex justify-content-between align-items-center flex-wrap">
                     <div>
 
                         <i class="fa-regular fa-circle-user"></i>
-                        <p class="d-inline"><span class="<?= Checker::colorMyRank($me['rank']) ?>"><?= $me['login'] ?></span></p>
+                        <p class="d-inline"><span class="<?= Checker::colorMyRank($me['rank']) ?> fs-5"><?= $me['login'] ?></span></p>
                     </div>
                     <div>
                         <!-- pour le fun un petit score de participation -->

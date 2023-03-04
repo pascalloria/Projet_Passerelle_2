@@ -24,7 +24,7 @@ function fetchIsGood(url) {
     const sky = response.weather[0].description;
 
     // notre affichage de la temperature
-    weather.innerHTML = '<span class="me-1">' + response.name +  ": " + temp.toFixed(1) + " °C ";
+    weather.innerHTML = '<span class="me-1">' + response.name +  ": " + temp.toFixed(1) + " °C </span>";
 
     // on affiche une icone en fonction du ciel
     if (sky.includes("clear")) {

@@ -8,7 +8,7 @@ ob_start();
 
     <h1>Articles</h1>
 
-    <p>Voici la liste des Articles, cliquez pour y accéder :</p>
+    <p class="text-color2 fs-5">Voici la liste des Articles, cliquez sur "voir plus" pour y accéder :</p>
     <form action="index.php?page=article" method="post">
 
         <?php
@@ -34,6 +34,9 @@ ob_start();
                     <div>
                         <p>ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span> </p>
                         <p>le : <?= DateToFr::dateFR($articles['date']) ?> </p>
+                        <?php  if ($articles['date'] != $articles['edit_date']) {?>
+                            <p> édité le :  <?=DateToFr::dateFR($articles['edit_date']) ?> </p>
+                      <?php  } ?>
                     </div>
                     <div class="text-bg-dark rounded-3">
                         <button class="btn btn-outline-light" type="submit" value="<?=$articles['id']?>" name="article">Voir plus</button>

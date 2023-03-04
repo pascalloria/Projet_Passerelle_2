@@ -12,17 +12,17 @@ ob_start();
     <form class="form" method="post" action="index.php?page=new-article">
         
         <p>
-            <label class="form-label" for="title">Titre</label>
+            <label class="form-label text-color2" for="title">Titre</label>
             <input class="form-control" type="text" id="title" name="title" placeholder="Votre titre" maxlength="80">
         </p>
         
         <p>
-            <label class="form-label" for="content">Texte</label>
+            <label class="form-label text-color2" for="content">Texte</label>
             <textarea class="form-control" name="content" id="content" cols="30" rows="10" maxlength="10000"></textarea>
         </p>   
         
         
-        <button class="btn btn-outline-success mt-3" type="submit">Valider</button>
+        <button class="btn btn-outline-primary mt-3" type="submit">Valider</button>
         
         
     </form>       

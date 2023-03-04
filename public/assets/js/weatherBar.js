@@ -24,7 +24,7 @@ function fetchIsGood(url) {
     const sky = response.weather[0].description;
 
     // notre affichage de la temperature
-    weather.innerHTML = response.name + " : " + temp.toFixed(1) + " °C ";
+    weather.innerHTML = '<span class="me-1">' + response.name +  ": " + temp.toFixed(1) + " °C ";
 
     // on affiche une icone en fonction du ciel
     if (sky.includes("clear")) {
@@ -32,28 +32,28 @@ function fetchIsGood(url) {
       if (month < 4 || month >= 11 ) {
 
           if(time >= 7 && time <= 18) {
-              weather.innerHTML += ' <i class="fa-solid fa-sun"></i>';
+              weather.innerHTML += ' <i class="fa-solid fa-sun text-primary"></i>';
           } else {
-              weather.innerHTML += ' <i class="fa-solid fa-moon"></i>';
+              weather.innerHTML += ' <i class="fa-solid fa-moon text-primary"></i>';
           }
          
       } else { // heure d'été
           if(time >= 7 && time <= 21) {
-              weather.innerHTML += ' <i class="fa-solid fa-sun"></i>';
+              weather.innerHTML += ' <i class="fa-solid fa-sun text-primary"></i>';
           } else {
-              weather.innerHTML += ' <i class="fa-solid fa-moon"></i>';
+              weather.innerHTML += ' <i class="fa-solid fa-moon text-primary"></i>';
           }
          
       }
     }
     else if (humidity > 75) {
-      weather.innerHTML += ' <i class="fa-solid fa-cloud-rain"></i>';
+      weather.innerHTML += ' <i class="fa-solid fa-cloud-rain text-primary"></i>';
     }
     else if (sky.includes("mist")) {
-      weather.innerHTML += ' <i class="fa-solid fa-smog"></i>';
+      weather.innerHTML += ' <i class="fa-solid fa-smog text-primary"></i>';
     }
     else if (sky.includes("cloud")) {
-      weather.innerHTML += ' <i class="fa-solid fa-cloud"></i>';
+      weather.innerHTML += ' <i class="fa-solid fa-cloud text-primary"></i>';
     }
   });
 }

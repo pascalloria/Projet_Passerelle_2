@@ -43,7 +43,7 @@ class Checker extends DBManager
   {
     if ($rank === 'admin') {
       return 'text-danger'; 
-    } else if ($rank === 'membre') {
+    } else if ($rank === 'user') {
       return 'text-primary';
     } else {
       return 'text-secondary';

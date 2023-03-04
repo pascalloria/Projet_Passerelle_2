@@ -17,7 +17,7 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
 <body class="d-flex flex-column text-danger">
 
     <header class="bg-color1">
-        <div class="container h-100">
+        <div class="container">
             <nav class="navbar  navbar-expand-md">
                 <div class="navbar-brand">
                     <h1> Diablo 4 Blog</h1>

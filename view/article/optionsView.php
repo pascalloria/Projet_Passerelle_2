@@ -16,7 +16,7 @@
                 <li><button type="button" class="update btn btn-warning border border-bottom-5 rounded-0 rounded-top w-100 " data-bs-toggle="modal" data-bs-target="#update-com-<?= $id_artOrCom ?>"><i class="fa-solid fa-pen me-1"></i>Editer</button></li>
             <?php } ?>
             <li>
-                <button type="button" class="btn btn-danger border rounded-0 rounded-bottom w-100" data-bs-toggle="modal" data-bs-target="#delete-<?php echo $isArticle ? "art-" : "com-";echo $id_artOrCom ?>">
+                <button type="button" class="btn btn-primary border rounded-0 rounded-bottom w-100" data-bs-toggle="modal" data-bs-target="#delete-<?php echo $isArticle ? "art-" : "com-";echo $id_artOrCom ?>">
                 <i class="fa-solid fa-circle-xmark me-1"></i> Supprimer
                 </button>
             </li>
@@ -44,8 +44,8 @@
                     <!-- Footer -->
                     <div class="modal-footer">
                         <span class="countComUp "></span>
-                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
-                        <button type="submit" class="comUpBtn btn btn-warning" name="update-com" value="<?= $id_artOrCom ?>">Modifier</button>
+                        <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Fermer</button>
+                        <button type="submit" class="comUpBtn btn btn-primary" name="update-com" value="<?= $id_artOrCom ?>">Modifier</button>
                     </div>
 
                 </div>
@@ -72,8 +72,8 @@
 
                 <!-- Footer -->
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <button type="submit" name="delete-<?php echo $isArticle ? "art" : "com"; ?>" value="<?= $id_artOrCom ?>" class="btn btn-danger">Supprimer</button>
+                    <button type="button" class="btn btn-outline-warning" data-bs-dismiss="modal">Fermer</button>
+                    <button type="submit" name="delete-<?php echo $isArticle ? "art" : "com"; ?>" value="<?= $id_artOrCom ?>" class="btn btn-primary">Supprimer</button>
 
                 </div>
 

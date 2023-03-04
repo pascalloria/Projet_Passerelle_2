@@ -14,13 +14,13 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
     <script src="https://kit.fontawesome.com/2847cc80c5.js" crossorigin="anonymous"></script>
 </head>
 
-<body class="d-flex flex-column text-danger">
+<body class="d-flex flex-column">
 
     <header class="bg-color1">
         <div class="container">
             <nav class="navbar  navbar-expand-md">
                 <div class="navbar-brand">
-                    <h1> Diablo 4 Blog</h1>
+                    <h1 class="text-color2"> Diablo 4 Blog</h1>
                 </div><!-- Le bouton s'affichera en petit écran -->
                 <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#monMenuDeroulant">
                     <span class="navbar-toggler-icon"></span>
@@ -28,39 +28,39 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
                 <div class="collapse navbar-collapse" id="monMenuDeroulant">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="index.php?page=home" class="nav-link active text-white"><i class="fa-solid fa-house"></i></i> Accueil</a>
+                            <a href="index.php?page=home" class="nav-link active text-color2"><i class="fa-solid fa-house"></i></i> Accueil</a>
                         </li>
                         <li class="nav-item">
-                            <a href="index.php?page=articles" class="nav-link text-white"><i class="fa-solid fa-newspaper"></i> Articles</a>
+                            <a href="index.php?page=articles" class="nav-link text-color2"><i class="fa-solid fa-newspaper"></i> Articles</a>
                         </li>
                         <?php if(isset($_SESSION['id']) && $me['rank'] == 'admin') { ?>
                         <li class="nav-item">
-                            <a href="index.php?page=new-article" class="nav-link text-white"><i class="fa-solid fa-pen-to-square"></i> créer article</a>
+                            <a href="index.php?page=new-article" class="nav-link text-color2"><i class="fa-solid fa-pen-to-square"></i> créer article</a>
                         </li>
                             <?php }?>
 
                         <?php if (!empty($_SESSION["id"])) { ?>
                             <li class="nav-item">
-                                <a href="index.php?page=profil" class="nav-link text-white"><i class="fa-regular fa-id-badge me-1"></i> Profil</a>
+                                <a href="index.php?page=profil" class="nav-link text-color2"><i class="fa-regular fa-id-badge me-1"></i> Profil</a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.php?page=logout" class="nav-link text-white"><i class="fa-solid fa-moon me-1"></i> Déconnection</a>
+                                <a href="index.php?page=logout" class="nav-link text-color2"><i class="fa-solid fa-moon me-1"></i> Déconnection</a>
                             </li>
                         <?php } else { ?>
                             <li class="nav-item">
-                                <a href="index.php?page=connect" class="nav-link text-white"><i class="fa-solid fa-plug me-1"></i>Connection</a>
+                                <a href="index.php?page=connect" class="nav-link text-color2"><i class="fa-solid fa-plug me-1"></i>Connection</a>
                             </li>
                             <li class="nav-item">
-                                <a href="index.php?page=inscription" class="nav-link text-white"><i class="fa-regular fa-file-lines me-1"></i>inscription</a>
+                                <a href="index.php?page=inscription" class="nav-link text-color2"><i class="fa-regular fa-file-lines me-1"></i>inscription</a>
                             </li>
                         <?php
                         } ?>
                         <li class="nav-item">
-                            <a href="#" class="nav-link text-white"><i class="fa-solid fa-user me-1"></i> Contact</a>
+                            <a href="#" class="nav-link text-color2"><i class="fa-solid fa-user me-1"></i> Contact</a>
                         </li>
                         <?php if(isset($_SESSION['id']) && $me['rank'] == 'admin') { ?>
                             <li class="nav-item">
-                                <a href="index.php?page=admin" class="nav-link text-white"><i class="fa-solid fa-user me-1"></i> admin</a>
+                                <a href="index.php?page=admin" class="nav-link text-color2"><i class="fa-solid fa-user me-1"></i> admin</a>
                             </li>
                         <?php }?>
                         
@@ -75,8 +75,8 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
         <?php if (isset($_SESSION['id'])) {
             
              ?>
-            <div class="p-2 bg-light">
-                <div class="container d-flex justify-content-between align-items-center flex-wrap">
+            <div class="p-2 bg-color4">
+                <div class="container d-flex justify-content-between align-items-center flex-wrap text-color3">
                     <div>
 
                         <i class="fa-regular fa-circle-user"></i>

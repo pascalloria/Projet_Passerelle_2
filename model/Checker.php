@@ -42,11 +42,11 @@ class Checker extends DBManager
   public static function colorMyRank($rank)
   {
     if ($rank === 'admin') {
-      return 'text-danger'; 
+      return 'text-color1'; 
     } else if ($rank === 'user') {
-      return 'text-primary';
+      return 'text-color3';
     } else {
-      return 'text-secondary';
+      return 'text-color2';
     }
   }
 

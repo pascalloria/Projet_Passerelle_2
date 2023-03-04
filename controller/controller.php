@@ -7,13 +7,14 @@ session_start();
    
 
     function successMessage($message) {
-        $_SESSION['success'] = $message;
+        $_SESSION['success'] = $message;       
     }
      function errorMessage($message) {
         $_SESSION['error'] = $message;
+        
     }
 
-    function clearMessage() {
+    function clearMessage() {        
         unset($_SESSION['success']);
         unset($_SESSION['error']);
     }    

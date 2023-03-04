@@ -31,13 +31,13 @@
                 <!-- Corps -->
                 <div class="card-body ">
                     <form  class="form text-center " method="post" action=".?page=connect">
-                        <p class="row">
+                        <p class="row align-items-center">
                             <label class="label col-4 fw-bold" for="login">Login :</label>
-                            <input class="control-form col-8" type="text" name="login" id="login" placeholder="Entrer votre pseudo" required >
+                            <input class="form-control-sm col-8" type="text" name="login" id="login" placeholder="Entrer votre pseudo" required >
                         </p>      
-                        <p class="row">
+                        <p class="row align-items-center">
                             <label class="label col-4 fw-bold" for="password">Mot de passe :</label>
-                            <input class="control-form col-8" type="password" name="password" id="password" placeholder="Entrer votre mot de passe" required>
+                            <input class="form-control-sm col-8" type="password" name="password" id="password" placeholder="Entrer votre mot de passe" required>
                         </p>
                         <button class="btn text-bg-dark rounded-3 p-2 " type="submit">Se connecter</button>  
                     </form>

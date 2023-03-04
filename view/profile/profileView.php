@@ -27,7 +27,7 @@ ob_start();
                             <input class="form-control" type="text" name="password" id="password" placeholder="confirmer votre MDP pour modifier">
                         </div>
                         <div>
-                            <button class=" btn btn-secondary form-control" type="submit" name="confirmEmail">Valider</button>
+                            <button class=" btn btn-secondary form-control" type="submit" name="changeEmail" id="changeEmail" >Valider</button>
                         </div>
                         <div id="toggle-block1" class="btn pt-4 link-warning">Changer votre mot de passe ? </div>
                     </div>
@@ -48,7 +48,7 @@ ob_start();
                             <input class="form-control" type="text" name="pass3" id="pass3" placeholder="confirmer nouveau MDP">
                         </div>
                         <div>
-                            <button class=" btn btn-secondary form-control" type="submit" name="confirmEmail">Valider</button>
+                            <button class=" btn btn-secondary form-control" type="submit" name="changePassword" id="changePassword">Valider</button>
                         </div>
                         <div id="toggle-block2" class="btn pt-4 link-warning">Changer votre email ? </div>
                     </div>

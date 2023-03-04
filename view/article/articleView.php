@@ -55,7 +55,7 @@ ob_start();
 
             <div class="card col-md-8 col-lg-10 mx-auto mb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4><span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?></h4>
+                    <h4 class="text-color4"><span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?></h4>
                     <div>
                         <?php if (isset($_SESSION['id'])) echo $gear->controls($commentaries['id_user'], $commentaries['id'], $commentaries['content'], $user['rank']); ?>
                     </div>
@@ -72,37 +72,37 @@ ob_start();
         <div>
             <?php if (isset($_SESSION['id'])) { ?>
                 <div id="bubble" class="fixed-bottom d-flex justify-content-end align-items-center mb-5 me-md-5">
-                    <div class="btn rounded-pill border border-3 border-danger  p-3 text-white  bg-dark " data-bs-toggle="tooltip" data-bs-placement="top" title="Ouvrir">
+                    <div class="btn rounded-pill border border-3 border-primary  p-3 text-color2  bg-color4 " data-bs-toggle="tooltip" data-bs-placement="top" title="Ouvrir">
                         <i class="fa-solid fa-comments fs-4"></i>
                     </div>
                 </div>
                 <form class="form" method="post" action="index.php?page=article">
 
-                    <div id="messenger" class="d-none d-flex flex-column fixed-bottom mb-md-2 rounded col-md-8 col-lg-10 mx-auto bg-dark pb-2 px-1 px-md-4 rounded-md-top border border-3 border-danger">
+                    <div id="messenger" class="d-none d-flex flex-column fixed-bottom mb-md-2 rounded col-md-8 col-lg-10 mx-auto bg-color4 pb-2 px-1 px-md-4 rounded-md-top border border-3 border-primary">
                         <div class=" d-flex justify-content-between align-items-center my-2 ">
                             <div id="title-messenger" class="text-danger ms-2">
                                 <h5> Votre meilleur commentaire</h5>
                             </div>
-                            <div class="bg-black rounded-pill border-0 ">
-                                <button id="closeMessenger" type="button" class="btn btn-close btn-close-white btn-outline-light p-2 rounded-pill fs-4"></button>
+                            <div class="bg-color4 rounded-pill border border-primary ">
+                                <button id="closeMessenger" type="button" class="btn btn-close btn-close-white  btn-outline-color2 p-2 rounded-pill fs-4"></button>
                             </div>
 
                         </div>
                         <div class="d-flex align-items-center gap-2">
                             <!-- utilisation d'un input pour un meilleur UX p/r a un textarea -->
-                            <input type="text" id="com" class="btn-outline-danger form-control rounded-pill" name="content" id="content"  maxlength="1024" placeholder="Votre commentaire...">
+                            <input type="text" id="com" class="btn-outline-primary form-control rounded-pill " name="content" id="content"  maxlength="1024" placeholder="Votre commentaire...">
 
                             <div class="bg-black  rounded-pill border-0">
-                                <button id="comBtn" class="btn rounded-pill border-0 p-2 btn-outline-light" name="addCom" type="submit"><i class="fa-solid fa-paper-plane text-danger me-1"></i></button>
+                                <button id="comBtn" class="btn rounded-pill border border-primary p-2 btn-outline-color2" name="addCom" type="submit"><i class="fa-solid fa-paper-plane text-danger me-1"></i></button>
                             </div>
                         </div>
-                        <div id="countCom" class="m-0 p-0 text-white">1024 caractères restants.</div>
+                        <div id="countCom" class="m-0 p-0 text-color2">1024 caractères restants.</div>
                     </div>
                 </form>
             <?php } else { ?>
                 <div class=" col-md-8 col-lg-10 mx-auto ">
                     <div class="p-2  d-flex justify-content-center align-items-center gap-3 ">
-                        <span>Vous devez être connecté pour pouvoir répondre:</span> <a href="index.php?page=connect" class="btn border btn-primary mx-2">Se Connecter</a>
+                        <span class="text-color2" >Vous devez être connecté pour pouvoir répondre:</span> <a href="index.php?page=connect" class="btn border btn-primary mx-2">Se Connecter</a>
                     </div>
                 </div>
             <?php } ?>

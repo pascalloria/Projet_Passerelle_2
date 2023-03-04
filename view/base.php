@@ -76,7 +76,7 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
             
              ?>
             <div class="p-2 bg-color4">
-                <div class="container d-flex justify-content-between align-items-center flex-wrap text-color3">
+                <div class="container d-flex justify-content-between align-items-center flex-wrap text-color2">
                     <div>
 
                         <i class="fa-regular fa-circle-user"></i>
@@ -84,7 +84,7 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
                     </div>
                     <div>
                         <!-- pour le fun un petit score de participation -->
-                        <span><i class="fa-solid fa-trophy"></i> Mon score : <?= Checker::getMyScore($_SESSION['id']) ?></span>
+                        <span><i class="fa-solid fa-trophy text-primary"></i> Mon score : <?= Checker::getMyScore($_SESSION['id']) ?></span>
                     </div>
                     <div id="weather">
 
@@ -112,10 +112,10 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
 
 
 
-    <footer>
-        <hr>
+    <footer >
+        <hr class="border border-primary border-3">
         <div class="container">
-            <p>Créé par Mistrall et Eclat</p>
+            <p class="text-primary">Créé par Mistrall et Eclat</p>
         </div>
 
 

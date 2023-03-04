@@ -7,10 +7,7 @@ require_once('../controller/ProfileController.php');
 require_once("../controller/AdminController.php");
 
 
-try {
-    //clearMessage();
-
-   
+try {       
     if (!empty($_GET["page"])) {
         $project = new ProjectController(new ProjectRepository);
         $user = new UsersController(new UsersRepository);
@@ -19,7 +16,7 @@ try {
         $admin = new AdminController(new AdminRepository);
 
             switch ($_GET["page"]) {
-                case 'home':
+                case 'home':                    
                     $project->home(); 
                     break;
                 case "createProject" :
@@ -58,18 +55,12 @@ try {
                     break;   
                 case 'new-article':
                     if(isset($_SESSION['id'])) {
-
-                        if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                            $title_article = htmlspecialchars($_POST['title']);
-                            $content = htmlspecialchars($_POST['content']);
-                            $id = $_SESSION['id'];
-                            $article->addArticle($title_article, $content, $id);
-                        } else {
-                            $article->newArticleForm();
-                        }
+                        if (!empty($_POST['title']) && !empty($_POST['content'])) {                           
+                            $article->addArticle( htmlspecialchars($_POST['title']),htmlspecialchars($_POST['content']), $_SESSION['id']);
+                        } 
+                        $article->newArticleForm();                        
                     } else {
-                        header('location:index.php?page=articles');
-                        exit();
+                        redirect('index.php?page=articles');                        
                     }
                     break;
                 case "articles":                    
@@ -81,8 +72,7 @@ try {
                         $id_article = (int)htmlspecialchars($_POST['article']); // on le retransforme en int
                         $_SESSION['id_article'] = $id_article;
                     }
-                    if (!isset($_SESSION['id_article'])) {
-        
+                    if (!isset($_SESSION['id_article'])) {        
                         redirect('index.php?page=articles'); //accesible uniquement avec un $_SESSION['id_article'] défini
                     }
                     
@@ -94,13 +84,11 @@ try {
                         // successMessage("contenue mis a jour");
                         $article->addCommentarie($content, $_SESSION['id_article'], $_SESSION['id']);
                      
-                    } else if (!empty($_POST['delete-art'])) {
-                        $id_article = htmlspecialchars($_POST['delete-art']);
-                        $article->eraseArticle($id_article);
+                    } else if (!empty($_POST['delete-art'])) {                        
+                        $article->eraseArticle( htmlspecialchars($_POST['delete-art']));
                         redirect("index.php?page=articles");
-                    } else if (!empty($_POST['delete-com'])) {
-                        $id_com = htmlspecialchars($_POST['delete-com']);
-                        $article->eraseCommentarie($id_com);
+                    } else if (!empty($_POST['delete-com'])) {                       
+                        $article->eraseCommentarie(htmlspecialchars($_POST['delete-com']));
                         $article->article($_SESSION['id_article']);
                     } else if (!empty($_POST['update-com']) && !empty($_POST['content-com'])) {
                         $newContent = htmlspecialchars($_POST['content-com']);
@@ -114,13 +102,10 @@ try {
                     break;
                 case "up-article":
                     $id_article = $_SESSION['id_article'];            
-                    if (!empty($_POST['title']) && !empty($_POST['content'])) {
-                        $title_article = htmlspecialchars($_POST['title']);
-                        $content = htmlspecialchars($_POST['content']);
-                        $article->modifyArticle($title_article, $content, $id_article);
+                    if (!empty($_POST['title']) && !empty($_POST['content'])) {                        
+                        $article->modifyArticle(htmlspecialchars($_POST['title']), htmlspecialchars($_POST['content']), $id_article);
                     } else {     
                         $article->upArticleForm($id_article);    
-
                     } 
                     break;
                 case "profil":
@@ -130,10 +115,8 @@ try {
                         }
                         if (isset($_POST["changePassword"])&& !empty($_POST["pass1"]) && !empty($_POST["pass2"]) && !empty($_POST["pass3"]) ){
                             $user->updatePassword(htmlspecialchars($_POST["pass1"]),htmlspecialchars($_POST["pass2"]),htmlspecialchars($_POST["pass3"]),$_SESSION['id']);
-                        }
-                     
-                        $profile->getMyContent($_SESSION['id']);
-        
+                        }                     
+                        $profile->getMyContent($_SESSION['id']);        
                     } else {
                         redirect("index.php");
                     }
@@ -143,30 +126,31 @@ try {
                         // L'adresse email est-elle correcte ?
                         $email=htmlspecialchars( $_POST["email"]);                
                         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                            header('location: ?page=inscription&error=1&message=Votre adresse email est invalide.');
-                            exit();
+                            errorMessage("Votre adresse email est invalide");
+                            redirect("index.php?page=inscription");                          
                         }                
                         // L'email n'est pas deja enregistrer ? 
                         if (!$user->avalaibleEmail($email) == 1){
-                            header('location: ?page=inscription&error=1&message=Cette adresse email est deja enregistré. Merci d\'en saisir une nouvelle.');
-                            exit();
+                            errorMessage("Cette adresse email est deja enregistré. Merci d\'en saisir une nouvelle.");
+                            redirect('?page=inscription');                            
                         }
                         
                         // Les passwords correspond t'il ?
                         if ($_POST["password"] === $_POST["password_two"]){
                             $password = htmlspecialchars($_POST["password"]); 
                         } else {
-                            header('location: ?page=inscription&error=1&message=Les 2 mots de passe ne correspondent pas');
-                            exit();
+                            errorMessage("Les 2 mots de passe ne correspondent pas");
+                            redirect("?page=inscription");                            
                         }
                         // login libre.
                         $login=htmlspecialchars($_POST["login"]);               
-                        if (!$user->avalaibleLogin($login) == 1 ){                   
-                            header('location: ?page=inscription&error=1&message=Le login n\'est pas disponible. Merci d\'en saisir un nouveau.');
-                            exit();
-                        }                
+                        if (!$user->avalaibleLogin($login) == 1 ){        
+                            errorMessage("Le login n\'est pas disponible. Merci d\'en saisir un nouveau.");           
+                            redirect('?page=inscription');                           
+                        }
+                                       
                         $user->addUser($login,$password,$email) ;              
-                    }            
+                    }                                
                     $user->register();
                     break;
                 case "connect" :

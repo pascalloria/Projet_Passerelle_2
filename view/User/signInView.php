@@ -29,23 +29,23 @@ if (isset($_GET["error"])){
             <!-- Corps -->
             <div class="card-body ">
             <form  class="form text-center " method="post" action=".?page=inscription">
-                    <p class="row">
+                    <p class="row align-items-center">
                         <label class="label col-5 fw-bol" for="login">Login :</label>
-                        <input class="control-form col-7" type="text" name="login" id="login" placeholder="Entrer votre pseudo" required >
+                        <input class="form-control-sm col-7" type="text" name="login" id="login" placeholder="Entrer votre pseudo" required >
                     </p>
 
-                    <p class="row">
+                    <p class="row align-items-center">
                         <label class="label col-5 fw-bol" for="email">Email :</label>
-                        <input class="control-form col-7" type="email" name="email" id="email" placeholder="Entrer un email valide" required>
+                        <input class="form-control-sm col-7" type="email" name="email" id="email" placeholder="Entrer un email valide" required>
                     </p>
 
-                    <p class="row">
+                    <p class="row align-items-center">
                         <label class="label col-5 fw-bol" for="password">Mot de passe :</label>
-                        <input class="control-form col-7" type="password" name="password" id="password" required>                    
+                        <input class="form-control-sm col-7" type="password" name="password" id="password" required>                    
                     </p>
-                    <p class="row">
+                    <p class="row align-items-center">
                         <label class="label col-5 fw-bol" for="password">Verifier mot de passe :</label>
-                        <input class="control-form col-7" type="password" name="password_two" id="password_two" required>
+                        <input class="form-control-sm col-7" type="password" name="password_two" id="password_two" required>
                     </p>
                     <button class="btn text-bg-dark rounded-3 p-2  type="submit">S'inscrire</button>  
                 </form>

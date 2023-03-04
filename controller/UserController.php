@@ -29,7 +29,9 @@ class UsersController {
 
     function addUser($login,$password,$email,){
 
-        //model       
+        //model      
+        // cryptage du password 
+        $password = "12452".sha1($password)."24478";
         $user = $this->usersRepository->addUserBdd($login,$password,$email,);
         if($user){
             successMessage("Votre compte à été créer avec sucèss"); 
@@ -42,7 +44,8 @@ class UsersController {
 
 
     function connectUser ($login,$password){ 
-                
+        // cryptage du password 
+        $password = "12452".sha1($password)."24478";        
         $request= $this->usersRepository->connectUser($login,$password);
         $res = $request->fetch();
         var_dump($res);
@@ -75,6 +78,53 @@ class UsersController {
         } else {
             return false;
         }
+    }
+
+    function updateEmail($password,$email,$id){
+        // cryptage du password 
+        $password ="12452".sha1($password)."24478"; 
+        // Verification du password
+        $request = $this->usersRepository->checkPassword($password,$id)  ;
+        $res= $request->fetch();        
+        if ($res){          
+            // modification de l'email
+             $result = $this->usersRepository->updateEmail($email,$id);
+            if ($result ===0){
+                throw new Exception("La modification de l'adresse email à échouer. Veuiller contacter l'administrateur du site");
+            } else {
+                successMessage("La modification est effecuté avec succès");                  
+            }   
+        } else {
+            errorMessage("Le mot passe n'est pas valide !");           
+        }
+
+       
+    }
+
+    function updatePassword($password,$newPassword,$newPassword2,$id){              
+        // cryptage du password 
+        $password ="12452".sha1($password)."24478"; 
+        // Verification du password
+        $request = $this->usersRepository->checkPassword($password,$id)  ;
+        $res= $request->fetch();        
+        if ($res){               
+            // verificaiton que les 2 nouveau mdp concorde
+            if ($newPassword === $newPassword2){
+                // cryptage du password 
+                $newPassword = "12452".sha1($newPassword)."24478";
+                $result = $this->usersRepository->updatePassword($newPassword,$id);
+                if ($result ===0){
+                    throw new Exception("La modification du mot de passe à échouer. Veuiller contacter l'administrateur du site");
+                } else {
+                    successMessage("La modification du mot de passe est effecuté avec succès");
+                    redirect("index.php?");        
+                } 
+            } else {
+                errorMessage("Les 2 mots de passe ne sont pas identiques !"); 
+            }            
+        } else {
+            errorMessage("Le mot de passe n'est pas valide !");           
+        }  
     }
 
 }

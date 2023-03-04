@@ -120,9 +120,17 @@ try {
         
         
         } else if ($_GET['page'] === 'profil') {
-            if(isset($_SESSION['id'])) {
-                clearMessage();               
+            if(isset($_SESSION['id'])) {                
+                if (isset($_POST["changeEmail"])&& !empty($_POST["email"]) && !empty($_POST["password"]) ){
+                    $user->updateEmail(htmlspecialchars($_POST["password"]),htmlspecialchars($_POST["email"]),$_SESSION['id']);
+                }
+                if (isset($_POST["changePassword"])&& !empty($_POST["pass1"]) && !empty($_POST["pass2"]) && !empty($_POST["pass3"]) ){
+                    $user->updatePassword(htmlspecialchars($_POST["pass1"]),htmlspecialchars($_POST["pass2"]),htmlspecialchars($_POST["pass3"]),$_SESSION['id']);
+                }
+
+                //clearMessage();               
                 $profile->getMyContent($_SESSION['id']);
+
             } else {
                 redirect("index.php");
             }
@@ -143,10 +151,7 @@ try {
                 
                 // Les passwords correspond t'il ?
                 if ($_POST["password"] === $_POST["password_two"]){
-                    $password = htmlspecialchars($_POST["password"]);
-                    // cryptage du password
-                    $password = "12452".sha1($password)."24478";
-
+                    $password = htmlspecialchars($_POST["password"]); 
                 } else {
                     header('location: ?page=inscription&error=1&message=Les 2 mots de passe ne correspondent pas');
                     exit();
@@ -163,8 +168,7 @@ try {
 
         } else if ($_GET['page'] ==="connect" ){
             if(!empty($_POST["login"]) && !empty($_POST['password']))  {
-                $password = "12452".sha1(htmlspecialchars($_POST['password']))."24478";
-                $user->connectUser(htmlspecialchars($_POST["login"]),$password);
+                $user->connectUser(htmlspecialchars($_POST["login"]),htmlspecialchars($_POST['password']));
             }         
             $user->connection();   
         } else if ($_GET['page'] ==="logout" ){

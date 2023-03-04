@@ -40,5 +40,25 @@ class UsersRepository extends DBManager {
         $requete->execute([$login,$password]);
         return $requete;
     }
+
+    public function updateEmail ($email,$id){
+        $bdd = $this->connection();         
+        $requete = $bdd->prepare("UPDATE ".$this::TABLE_NAME." SET email = ?  WHERE id = ? ");
+        $requete->execute([$email,$id]);
+        return $requete->rowCount();
+    }
+    public function updatePassword ($newPassword,$id){
+        $bdd = $this->connection();         
+        $requete = $bdd->prepare("UPDATE ".$this::TABLE_NAME." SET password = ?  WHERE id = ? ");
+        $requete->execute([$newPassword,$id]);
+        return $requete->rowCount();
+    }
+
+    public function checkPassword ( $password,$id){
+        $bdd = $this->connection();
+        $request = $bdd->prepare("SELECT * from ".$this::TABLE_NAME." WHERE password= ? and id= ? ");
+        $request->execute([$password,$id]);
+        return $request;
+    }
     
  }

@@ -96,11 +96,13 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
     <?php if (isset($_SESSION['success'])) { ?>
         <div class="mt-2 container alert alert-success"><?= $_SESSION["success"] ?></div>
     <?php }
+       clearMessage()
     ?>
 
     <?php if (isset($_SESSION['error'])) { ?>
         <div class="mt-2 container alert alert-danger"><?= $_SESSION["error"] ?></div>
     <?php }
+        clearMessage()
     ?>
 
 

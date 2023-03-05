@@ -28,7 +28,7 @@ if (isset($_GET["error"])){
             </div>
             <!-- Corps -->
             <div class="card-body ">
-            <form  class="form text-center " method="post" action=".?page=inscription">
+                <form  class="form text-center " method="post" action=".?page=inscription">
                     <p class="row align-items-center">
                         <label class="label col-5 fw-bol" for="login">Login :</label>
                         <input class="form-control-sm col-7" type="text" name="login" id="login" placeholder="Entrer votre pseudo" required >
@@ -50,6 +50,11 @@ if (isset($_GET["error"])){
                     <button class="btn text-bg-dark rounded-3 p-2  type="submit">S'inscrire</button>  
                 </form>
             </div>
+            <div class="card-footer p-0">            
+                    <div class="d-flex">                        
+                        <p class="ms-5">Déja membre ?<a href="index.php?page=connect"><i>connectez-vous</i></a></p>
+                    </div>                    
+                </div>
 
                 
             

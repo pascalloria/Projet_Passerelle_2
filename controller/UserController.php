@@ -82,23 +82,30 @@ class UsersController {
 
     function updateEmail($password,$email,$id){
         // cryptage du password 
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            errorMessage("Votre adresse email est invalide");
+            redirect("index.php?page=profil");                          
+        }                
         $password ="12452".sha1($password)."24478"; 
         // Verification du password
         $request = $this->usersRepository->checkPassword($password,$id)  ;
         $res= $request->fetch();        
         if ($res){          
-            // modification de l'email
-             $result = $this->usersRepository->updateEmail($email,$id);
-            if ($result ===0){
-                throw new Exception("La modification de l'adresse email à échouer. Veuiller contacter l'administrateur du site");
-            } else {
-                successMessage("La modification est effecuté avec succès");                  
-            }   
+            // verificaiton que le nouvel email soit disponible
+            if ($this->avalaibleEmail($email)){
+                // modification de l'email
+                $result = $this->usersRepository->updateEmail($email,$id);
+                if ($result === 0){
+                    throw new Exception("La modification de l'adresse email à échouer. Veuiller contacter l'administrateur du site");
+                } else {
+                    successMessage("La modification est effecuté avec succès");                  
+                }
+            } else {                 
+                errorMessage("Cette adresse email est deja enregistré. Merci d\'en saisir une nouvelle.")  ;               
+            }
         } else {
             errorMessage("Le mot passe n'est pas valide !");           
-        }
-
-       
+        }   
     }
 
     function updatePassword($password,$newPassword,$newPassword2,$id){              
@@ -116,8 +123,7 @@ class UsersController {
                 if ($result ===0){
                     throw new Exception("La modification du mot de passe à échouer. Veuiller contacter l'administrateur du site");
                 } else {
-                    successMessage("La modification du mot de passe est effecuté avec succès");
-                    redirect("index.php?");        
+                    successMessage("La modification du mot de passe est effecuté avec succès");                      
                 } 
             } else {
                 errorMessage("Les 2 mots de passe ne sont pas identiques !"); 

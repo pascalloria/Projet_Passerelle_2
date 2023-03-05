@@ -1,8 +1,8 @@
 # Projet_Passerelle_2
 
-But : création d'un site type blog avec stockage du contenues dans une base de données SQL. Et gestion des permissions utilisateurs.
+But : création d'un site type blog avec stockage du contenu dans une base de données SQL. Et gestion des permissions utilisateurs.
 
-Technologies : *PHP JS html SQL docker*
+Technologies : *PHP JS html css Bootstrap5 SQL docker *
 
 Nous utiliserons une architecture **MVC POO**.
 
@@ -12,23 +12,23 @@ Sujet : Diablo 4.
 
 ## Projets: 
 - une image 
-- peut être modifiés ou supprimer par un administrateur
+- peuvent être modifiés ou supprimé par un administrateur
 - système de like ( a implémenter)
 - Uniquement Creer par un administrateur
 
 ## Articles:
 - peut être écrit par un utilisateur connecté.
 - uniquement l auteur et les admins peuvent éditer ou supprimer un article.
-- possèdes des commentaires.
+- possèdent des commentaires.
 
 ## Commentaires :
 - tout utilisateur connecté peut poster un commentaire.
-- les commentaires sont éditables et supprimable par leur auteur et les admins
+- les commentaires peuvent être modifiés/supprimés par leur auteur et les admins.
 - le nombre de commentaires est affiché.
-- limite à 1500 caractères.
-- le nmobre de caractères restants s'affiche lors de la rédactions d'un commentaire.
+- limite à 1024 caractères.
+- le nombre de caractères restants s'affiche lors de la rédactions d'un commentaire.
 
-## Gestion utilisateur :
+## Gestion utilisateurs (admin) :
 - gestion des droits
 - suppression d'un utilisateur
 - suppression d'un utilisateur et de ses contributions 
@@ -36,9 +36,13 @@ Sujet : Diablo 4.
 ## Profil :
 
 - accès au contributions
-- scores dépendant de ses contributions
+- scores dépendant de ses contributions (affiché égalemenet dans le liseré sous le header)
 - modification de l'adresse mail et du MDP
 
+
+### axes d'améliorations :
+
+- réinitialisation de mdp: envoie d'un mail automatique avec lien.
 
 
 

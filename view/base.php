@@ -12,6 +12,13 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
     <title><?= $title ?></title>
     <link rel="stylesheet" href="../design/default.css">
     <script src="https://kit.fontawesome.com/2847cc80c5.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+      tinymce.init({
+        selector: '#mycontent'      
+        
+      });
+    </script>
 </head>
 
 <body class="d-flex flex-column">

@@ -5,43 +5,50 @@ ob_start();
 ?>
 
 <div class="my-5">
+    <!-- on va se servir de l'id utilisateur pour afficher ou non la roue cranté pour pouvoir modifier le contenu dont on est l'auteur -->
     <?php
     if (isset($_SESSION['id'])) {
-        $user = Checker::getLoginAndRank($_SESSION['id']);
+        $user = Checker::getLoginAndRank($_SESSION['id']); // si c'est un admin, il peut tout modifier
     }
     while ($article = $request->fetch()) {
-        $author = Checker::getAuthor("articles", $article['id_user']);
+        $author = Checker::getAuthor("articles", $article['id_user']); // on recupère le nom des auteurs pour les afficher
 
 
     ?>
         <div class="card  mb-4">
             <div class="card-header d-flex justify-content-between align-items-center">
+                <!-- le titre de l'article -->
                 <h1><?= $article['title'] ?></h1>
-                <div>
+                <div> 
+                    <!-- ici notre fonction pour afficher ou non la roue cranté: model/Options et view/optionsView  -->
                     <?php if (isset($_SESSION['id'])) echo $gear->controls($article['id_user'], $article['id'], $article['content'], $user['rank'], true); ?>
                 </div>
             </div>
             <div class="card-body">
-
+            <!-- on affiche le contenu de l'article -->
                 <div id="text-art"><?= $article['content'] ?> </div>
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <div>
+                    <!-- methode servant comme son nom l'indique a echo le code couleur correspondant au rang utilisateur /// le nom de l'auteur -->
                     <p>Ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span> </p>
                 </div>
                 <div class="text-bg-dark rounded-3">
                     <div id="btnCom" class="btn border p-2 btn-outline-light  ">
 
                         <div data-bs-toggle="tooltip" data-bs-placement="top" title="commentaires">
-                            <small class="showMe me-2">Afficher</small><?= Checker::articleGotComs($article['id']) ?><i class="mx-2 fa-regular fa-comment"></i>
+                            <small class="showMe me-2">Afficher</small><span><?= Checker::articleGotComs($article['id']) ?></span><i class="mx-2 fa-regular fa-comment"></i>
                         </div>
                     </div>
                 </div>
 
 
             </div>
-            <div class="card-footer d-flex justify-content-between align-items-center">
+            <div class="card-footer d-flex flex-column ">
                 <p>Le : <?= DateToFr::dateFR($article['date']) ?> </p>
+                <?php  if ($article['date'] != $article['edit_date']) {?>
+                            <p> édité le :  <?=DateToFr::dateFR($article['edit_date']) ?> </p>
+                      <?php  } ?>
             </div>
         </div>
         <div class="showHidden d-none mb-5">
@@ -55,7 +62,13 @@ ob_start();
 
             <div class="card col-md-8 col-lg-10 mx-auto mb-3">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h4 class="text-color4"><span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?></h4>
+                    <p>
+                        <span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?>
+                        <?php if ($commentaries['date'] !=$commentaries['edit_date']) { ?> 
+                            <span class="badge bg-primary ms-1" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=DateToFr::dateFR($commentaries['edit_date'])?>"> Modifié</span> 
+                            <?php } ?>
+                    </p>
+
                     <div>
                         <?php if (isset($_SESSION['id'])) echo $gear->controls($commentaries['id_user'], $commentaries['id'], $commentaries['content'], $user['rank']); ?>
                     </div>
@@ -102,7 +115,7 @@ ob_start();
             <?php } else { ?>
                 <div class=" col-md-8 col-lg-10 mx-auto ">
                     <div class="p-2  d-flex justify-content-center align-items-center gap-3 ">
-                        <span class="text-color2" >Vous devez être connecté pour pouvoir répondre:</span> <a href="index.php?page=connect" class="btn border btn-primary mx-2">Se Connecter</a>
+                        <span class="text-color2 fs-4" >Vous devez être connecté pour pouvoir répondre:</span> <a href="index.php?page=connect" class="btn border btn-primary mx-2">Se Connecter</a>
                     </div>
                 </div>
             <?php } ?>

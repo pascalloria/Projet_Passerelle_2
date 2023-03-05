@@ -44,8 +44,9 @@
                 </div>
                 <!-- Pied -->
                 <div class="card-footer p-0">            
-                    <div class="d-flex ">
-                        <a href=""><i>Mot de passe oublié ?</i></a>
+                    <div class="d-flex justify-content-between ">
+                        <p><a href=""><i>Mot de passe oublié ?</i></a></p>
+                        <p class="ms-5">Pas encore membre ? <a href="index.php?page=inscription"><i>inscrivez-vous</i></a></p>
                     </div>                    
                 </div>
             </div>

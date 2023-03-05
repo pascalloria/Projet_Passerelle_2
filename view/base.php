@@ -117,7 +117,7 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
     <footer >
         <hr class="border border-primary border-3">
         <div class="container">
-            <p class="text-primary">Créé par Mistrall et Eclat</p>
+            <p class="text-primary">&copy; Mistrall et Eclat <i>@2023</i></p>
         </div>
 
 

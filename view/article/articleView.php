@@ -26,7 +26,7 @@ ob_start();
             </div>
             <div class="card-body">
             <!-- on affiche le contenu de l'article -->
-                <div id="text-art"><?= $article['content'] ?> </div>
+                <div id="text-art"><?= htmlspecialchars_decode($article['content']) ?> </div> <!-- On part du principe que SEULS LES ADMINS peuvent poster un article -->
             </div>
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <div>
@@ -127,7 +127,7 @@ ob_start();
 $content = ob_get_clean();
 ob_start(); ?>
 <script src="assets/js/showHidden.js"></script>
-<script src="assets/js/textFormatKeeper.js"></script>
+<!-- <script src="assets/js/textFormatKeeper.js"></script>  Nous avons pris la décision de passer à Tiny donc ce script n'est plus utile, je le laisse juste pour la correction, il sera dégagé à terme -->
 <?php if (isset($_SESSION['id'])) { ?>
     <script src="assets/js/counterCom.js"></script>
 <?php }

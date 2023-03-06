@@ -23,7 +23,7 @@ ob_start();
                 </div>
                 <div class="card-body">
 
-                    <p class="text-truncate"><?= $articles['content'] ?> </p>
+                    <div class="text-truncate"><?=htmlspecialchars_decode($articles['content'])?> </div>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-end gap-4">
                     <div data-bs-toggle="tooltip" data-bs-placement="top" title="commentaires">
@@ -33,12 +33,12 @@ ob_start();
                 <div class="card-footer d-flex align-items-center justify-content-between">
                     <div>
                         <p>ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span>
+                        <?php if ($articles['date'] != $articles['edit_date']) { ?>
                             <span class="badge bg-primary ms-1" data-bs-toggle="tooltip" data-bs-placement="right" title="<?= DateToFr::dateFR($articles['edit_date']) ?>">Mis à jour</span>
+                            
+                            <?php  } ?>
                         </p>
                         <p>le : <?= DateToFr::dateFR($articles['date']) ?> </p>
-                        <?php if ($articles['date'] != $articles['edit_date']) { ?>
-                            <p> </p>
-                        <?php  } ?>
                     </div>
                     <div class="text-bg-dark rounded-3">
                         <button class="btn btn-outline-light" type="submit" value="<?= $articles['id'] ?>" name="article">Voir plus</button>

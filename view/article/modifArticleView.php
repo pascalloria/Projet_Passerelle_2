@@ -13,14 +13,19 @@ ob_start();
 
             <p>
                 <label class="form-label text-color2" for="title">Titre</label>
-                <input class="form-control" type="text" id="title" name="title" placeholder="Votre titre" maxlength="80" value="<?= $article['title'] ?>">               
+                <input required class="form-control" type="text" id="title" name="title" placeholder="Votre titre" maxlength="80" value="<?= $article['title'] ?>">
             </p>
-            <p>
-                <label class="form-label text-color2" for="content">Texte</label>
-                <textarea class="form-control" name="content" id="content" cols="30" rows="10" maxlength="10000"><?= $article['content'] ?></textarea>
-            </p>
-            <button class="btn btn-outline-primary mt-3" type="submit">Valider</button>
+            <div id="editor">
 
+                <p>
+                    <label class="form-label text-color2" for="content">Texte</label>
+                    <textarea required class="form-control" name="content" id="mycontent" cols="30" rows="10" maxlength="10000"><?= $article['content'] ?></textarea>
+                </p>
+            </div>
+            <div class="d-flex justify-content-between">
+                <a class="btn btn-outline-color2 mt-3 text-center" href="index.php?page=articles">Annuler</a>
+                <button class="btn btn-primary mt-3 text-center" type="submit">Valider</button>
+            </div>
         </form>
 </div>
 

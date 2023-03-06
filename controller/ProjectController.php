@@ -15,17 +15,26 @@ class ProjectController {
     function home() {       
         //Model        
         $requete = $this->projectRepository->getAllProject();
+        $likes = [];
         if (!$requete){
             throw new Exception("Les projets n'ont pas pus etre afficher");
             exit();
         } 
-
+        // suppression du Projet
         if (!empty($_GET["deleteId"])){            
             $this->deleteProject($_GET["deleteId"]);
-
+        // modification du Projet
         } else if (!empty($_GET["updateId"])){             
             $this->updateProject($_GET["updateId"]);            
         } 
+        // ajout d'un like
+        else if (!empty($_GET["like"]) && !empty($_SESSION["id"])){
+            $this->addLikes($_GET["like"],$_SESSION["id"]);
+        }
+        // suppression d'un like 
+        else if (!empty($_GET["dislike"]) && !empty($_SESSION["id"])){
+            $this->removeLikes($_GET["dislike"],$_SESSION["id"]);
+        }             
         // view 
         require("../view/Projects/projectsView.php");  
     }
@@ -83,5 +92,31 @@ class ProjectController {
             successMessage("La modification est effecuté avec suces");
             redirect("index.php?");           
         }     
+    }
+
+    function addLikes($id_article,$id_users){
+       
+        $result = $this->projectRepository->addLikes($id_article,$id_users);
+        redirect("index.php");
+        if ($result === 0){
+            throw new Exception("Le like n'a pas pus etre pris en compte. Veuiller contacter l'administrateur du site");
+        }  
+    }
+
+    function removeLikes($id_article,$id_users){
+        $result = $this->projectRepository->removeLikes($id_article,$id_users);
+        redirect("index.php");
+        if ($result === 0){
+            throw new Exception("Le like n'a pas pus etre supprimer en compte. Veuiller contacter l'administrateur du site");
+        }  
+    }
+    function getNumberlike($id_article){
+        $like = $this->projectRepository->getNumberLike($id_article);
+        return $like;
+    }
+
+    function checkIdUser ($id_article,$id_user){
+        $request = $this->projectRepository->checkIdUser($id_article,$id_user);
+        return $request;
     }
 }

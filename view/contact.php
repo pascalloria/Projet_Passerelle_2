@@ -15,7 +15,7 @@ ob_start();
         <div class="d-flex gap-3">
             <a href="https://github.com/pascalloria/" target="_blank"><i class="fa-brands fa-github fs-4"></i></a>
             <a href="https://www.linkedin.com/in/pascal-loria/" target="_blank"><i class="fa-brands fa-linkedin fs-4"></i></a>
-            <a href="mailto:pascal.loria@laposte.net?subject=demande de renseignements&body=Bonjour je vous contacte,"><i class="fa-solid fa-envelope fs-4"></i></a> <!-- attention il faut changer ton mail -->
+            <a href="mailto:dev.pascalloria@gmail.com?subject=demande de renseignements&body=Bonjour je vous contacte,"><i class="fa-solid fa-envelope fs-4"></i></a> <!-- attention il faut changer ton mail -->
         </div>
 
     </div>

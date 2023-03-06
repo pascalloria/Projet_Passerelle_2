@@ -66,7 +66,7 @@ ob_start();
                     <p>
                         <span class="<?= Checker::colorMyRank($authorCom['rank']) ?>"><?= $authorCom['login'] ?></span> le <?= DateToFr::dateFR($commentaries['date']) ?>
                         <?php if ($commentaries['date'] !=$commentaries['edit_date']) { ?> 
-                            <span class="badge bg-primary ms-1" data-bs-toggle="tooltip" data-bs-placement="top" title="<?=DateToFr::dateFR($commentaries['edit_date'])?>"> Modifié</span> 
+                            <span class="badge bg-primary ms-1" data-bs-toggle="tooltip" data-bs-placement="right" title="<?=DateToFr::dateFR($commentaries['edit_date'])?>"> Modifié</span> 
                             <?php } ?>
                     </p>
 

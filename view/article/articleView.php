@@ -31,7 +31,10 @@ ob_start();
             <div class="card-footer d-flex justify-content-between align-items-center">
                 <div>
                     <!-- methode servant comme son nom l'indique a echo le code couleur correspondant au rang utilisateur /// le nom de l'auteur -->
-                    <p>Ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span> </p>
+                    <p>Ecrit par : <span class="fw-bold <?= Checker::colorMyRank($author['rank']) ?>"><?= $author['login'] ?></span> 
+                    <?php if ($article['date'] !=$article['edit_date']) { ?> 
+                            <span class="badge bg-primary ms-1" data-bs-toggle="tooltip" data-bs-placement="right" title="<?=DateToFr::dateFR($article['edit_date'])?>"> Modifié</span> 
+                            <?php } ?></p>
                 </div>
                 <div class="text-bg-dark rounded-3">
                     <div id="btnCom" class="btn border p-2 btn-outline-light  ">
@@ -46,9 +49,7 @@ ob_start();
             </div>
             <div class="card-footer d-flex flex-column ">
                 <p>Le : <?= DateToFr::dateFR($article['date']) ?> </p>
-                <?php  if ($article['date'] != $article['edit_date']) {?>
-                            <p> édité le :  <?=DateToFr::dateFR($article['edit_date']) ?> </p>
-                      <?php  } ?>
+                
             </div>
         </div>
         <div class="showHidden d-none mb-5">

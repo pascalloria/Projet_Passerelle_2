@@ -1,6 +1,6 @@
-<nav class="navbar  navbar-expand-md">
+<nav class="navbar  navbar-expand-lg">
     <div class="navbar-brand">
-        <h1 class="text-color2"> Diablo 4 Blog</h1>
+        <span class="text-color2 h3"> Diablo 4 Blog</span>
     </div><!-- Le bouton s'affichera en petit écran -->
     <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#monMenuDeroulant">
         <span class="navbar-toggler-icon"></span>
@@ -33,7 +33,7 @@
             <?php
             } ?>
             <li class="nav-item">
-                <a href="#" class="nav-link text-color2"><i class="fa-solid fa-user me-1"></i> Contact</a>
+                <a href="index.php?page=contact" class="nav-link text-color2"><i class="fa-solid fa-user me-1"></i> Contact</a>
             </li>
             <?php if(isset($_SESSION['id']) && $me['rank'] == 'admin') { ?>
                 <li class="nav-item">

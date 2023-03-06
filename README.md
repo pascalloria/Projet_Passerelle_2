@@ -8,23 +8,23 @@ Nous utiliserons une architecture **MVC POO**.
 
 Sujet : Diablo 4.
 
-# Contenue :
+# Contenu:
 
 ## Projets: 
 - une image 
 - peuvent être modifiés ou supprimé par un administrateur
 - système de like ( a implémenter)
-- Uniquement Creer par un administrateur
+- Uniquement Créé par un administrateur
 
 ## Articles:
 - peut être écrit par un utilisateur connecté.
-- uniquement l auteur et les admins peuvent éditer ou supprimer un article.
+- uniquement l'auteur et les admins peuvent éditer ou supprimer un article.
 - possèdent des commentaires.
+- le nombre de commentaires est affiché.
 
 ## Commentaires :
 - tout utilisateur connecté peut poster un commentaire.
 - les commentaires peuvent être modifiés/supprimés par leur auteur et les admins.
-- le nombre de commentaires est affiché.
 - limite à 1024 caractères.
 - le nombre de caractères restants s'affiche lors de la rédactions d'un commentaire.
 
@@ -36,7 +36,7 @@ Sujet : Diablo 4.
 ## Profil :
 
 - accès au contributions
-- scores dépendant de ses contributions (affiché égalemenet dans le liseré sous le header)
+- scores dépendant de ses contributions (affiché également dans le liseré sous le header, si connecté)
 - modification de l'adresse mail et du MDP
 
 

@@ -5,7 +5,7 @@ require_once("../controller/ProjectController.php");
 require_once("../controller/UserController.php");
 require_once('../controller/ProfileController.php');
 require_once("../controller/AdminController.php");
-
+require_once("../controller/contactController.php");
 
 try {       
     if (!empty($_GET["page"])) {
@@ -14,7 +14,7 @@ try {
         $article = new ArticleController(new ArticleRepository);
         $profile = new ProfileController(new ProfileRepository);
         $admin = new AdminController(new AdminRepository);
-
+        $contact = new ContactController();
             switch ($_GET["page"]) {
                 case 'home':                    
                     $project->home(); 
@@ -180,6 +180,9 @@ try {
                     }  else {
                         throw new Exception("Vous n'avez pas les droits requis pour réaliser cette action. Veuillez contactez un administrateur");
                     }    
+                    break;
+                case "contact":
+                    $contact->showTeam();
                     break;
                 default:
                     throw new Exception("Cette page n'existe pas");

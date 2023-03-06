@@ -94,29 +94,29 @@ class ProjectController {
         }     
     }
 
-    function addLikes($id_article,$id_users){
+    function addLikes($id_project,$id_users){
        
-        $result = $this->projectRepository->addLikes($id_article,$id_users);
+        $result = $this->projectRepository->addLikes($id_project,$id_users);
         redirect("index.php");
         if ($result === 0){
             throw new Exception("Le like n'a pas pus etre pris en compte. Veuiller contacter l'administrateur du site");
         }  
     }
 
-    function removeLikes($id_article,$id_users){
-        $result = $this->projectRepository->removeLikes($id_article,$id_users);
+    function removeLikes($id_project,$id_users){
+        $result = $this->projectRepository->removeLikes($id_project,$id_users);
         redirect("index.php");
         if ($result === 0){
             throw new Exception("Le like n'a pas pus etre supprimer en compte. Veuiller contacter l'administrateur du site");
         }  
     }
-    function getNumberlike($id_article){
-        $like = $this->projectRepository->getNumberLike($id_article);
+    function getNumberlike($id_project){
+        $like = $this->projectRepository->getNumberLike($id_project);
         return $like;
     }
 
-    function checkIdUser ($id_article,$id_user){
-        $request = $this->projectRepository->checkIdUser($id_article,$id_user);
+    function checkIdUser ($id_project,$id_user){
+        $request = $this->projectRepository->checkIdUser($id_project,$id_user);
         return $request;
     }
 }

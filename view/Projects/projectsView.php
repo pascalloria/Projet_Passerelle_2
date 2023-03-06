@@ -54,7 +54,7 @@
                             if ($res === 0){ ?>
                                 <span>Likes : <?=$like ?> </span><button class="btn ms-1" type="submit" name="like" id="like" value="<?= $project["id"] ?>"> <span class="ms-1 fa-regular fa-thumbs-up"></span></button>
                         <?php  } else { ?>
-                                <span>Likes : <?=$like ?> Likes</span><button  class="btn ms-1"  type="submit" name="dislike" id="dislike" value="<?= $project["id"] ?>"><span class="ms-1 fa-regular fa-thumbs-down"></span></button>
+                                <span>Likes : <?=$like ?> </span><button  class="btn ms-1"  type="submit" name="dislike" id="dislike" value="<?= $project["id"] ?>"><span class="ms-1 fa-regular fa-thumbs-down"></span></button>
                         <?php }} else { ?> 
                                 <span>Likes : <?=$like ?> </span>
                             <?php }  ?>

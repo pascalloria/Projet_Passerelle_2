@@ -44,31 +44,31 @@ class ProjectRepository extends DBManager {
 
     // Gestion des likes 
 
-    public function addLikes ($id_article,$id_user){
+    public function addLikes ($id_project,$id_user){
         $bdd =$this->connection();
-        $requete = $bdd->prepare("INSERT INTO ".$this::TABLE_LIKES."(id_article,id_user) VALUES (?,?)");
-        $requete->execute([$id_article,$id_user]);   
+        $requete = $bdd->prepare("INSERT INTO ".$this::TABLE_LIKES."(id_project,id_user) VALUES (?,?)");
+        $requete->execute([$id_project,$id_user]);   
         return $requete->rowCount(); 
     }
 
     public function getNumberLike ($id){
         $bdd = $this->connection();
-        $request = $bdd->prepare ("SELECT * FROM ".$this::TABLE_LIKES." WHERE id_article = ?");
+        $request = $bdd->prepare ("SELECT * FROM ".$this::TABLE_LIKES." WHERE id_project = ?");
         $request->execute([$id]);
         return $request->rowCount();
     }
 
-    public function checkIdUser ($id_article,$id_user){
+    public function checkIdUser ($id_project,$id_user){
         $bdd = $this->connection();
-        $request = $bdd->prepare ("SELECT * FROM ".$this::TABLE_LIKES." WHERE id_article = ? AND id_user= ?");
-        $request->execute([$id_article,$id_user]);
+        $request = $bdd->prepare ("SELECT * FROM ".$this::TABLE_LIKES." WHERE id_project = ? AND id_user= ?");
+        $request->execute([$id_project,$id_user]);
         return $request->rowCount();
     }
 
-    public function removeLikes ($id_article,$id_user){
+    public function removeLikes ($id_project,$id_user){
         $bdd =$this->connection();
-        $requete = $bdd->prepare("DELETE FROM ".$this::TABLE_LIKES." WHERE id_article = ? AND id_user= ?");
-        $requete->execute([$id_article,$id_user]);   
+        $requete = $bdd->prepare("DELETE FROM ".$this::TABLE_LIKES." WHERE id_project = ? AND id_user= ?");
+        $requete->execute([$id_project,$id_user]);   
         return $requete->rowCount(); 
     }
 

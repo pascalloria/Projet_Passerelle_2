@@ -25,18 +25,44 @@ services:
       - "8080:80"
     environment:
       PMA_HOST: db-service
-
-  mailer-service:
-    image: schickling/mailcatcher
-    container_name: mailer_dev_interface
-    ports: ["1025", "1080"]
-    networks:
-      - dev_network
-
-networks:
-  dev_network:
+  
+  
+  proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile.proxy
+    restart: always
+    volumes:
+      #- type: bind
+      #  source: /folder_key_host # exemple /root/.acme.sh/mon_domain
+      #  target: /certs
+      - type: bind
+        target: /var/www/diablo4Blog/html   # cible dans docker
+        source: ./html # folder app côté host
+      # - type: bind
+      #   target: /var/www/html/projet2
+      #   source: ./projet2
+    depends_on:
+      - diablo4
+      - db-service
+    ports:
+      - "80:80"
+      - "443:443"
+    
+  diablo4:
+    build:
+      context: .
+      dockerfile: Dockerfile.p1
+    restart: always
+    volumes:
+      - type: volume
+        target: /var/www/diablo4Blog/html/vendor
+      - type: bind
+        target: /var/www/diablo4Blog/html
+        source: ./html
+    depends_on:
+      - db-service
 
 volumes:
   blogDB: 
     external: true
-

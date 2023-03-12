@@ -5,5 +5,5 @@ function clearMessage(){
     })
 };
 
-setTimeout(clearMessage,"10000");
+setTimeout(clearMessage,"5000");
     

@@ -31,22 +31,22 @@
                 <!-- Corps -->
                 <div class="card-body ">
                     <form  class="form text-center " method="post" action=".?page=connect">
-                        <p class="row align-items-center">
-                            <label class="label col-4 fw-bold" for="login">Login :</label>
+                        <p class="row align-items-center justify-content-center">
+                            <label class="label col-4 fw-bold d-none d-md-block " for="login">Login :</label>
                             <input class="form-control-sm col-8" type="text" name="login" id="login" placeholder="Entrer votre pseudo" required >
                         </p>      
-                        <p class="row align-items-center">
-                            <label class="label col-4 fw-bold" for="password">Mot de passe :</label>
+                        <p class="row align-items-center justify-content-center">
+                            <label class="label col-4 fw-bold d-none d-md-block" for="password">Mot de passe :</label>
                             <input class="form-control-sm col-8" type="password" name="password" id="password" placeholder="Entrer votre mot de passe" required>
                         </p>
-                        <button class="btn text-bg-dark rounded-3 p-2 " type="submit">Se connecter</button>  
+                        <button class="btn text-bg-dark rounded-3 px-3 py-2 " type="submit">Se connecter</button>  
                     </form>
                 </div>
                 <!-- Pied -->
                 <div class="card-footer p-0">            
-                    <div class="d-flex justify-content-between ">
-                        <p><a href=""><i>Mot de passe oublié ?</i></a></p>
-                        <p class="ms-5">Pas encore membre ? <a href="index.php?page=inscription"><i>inscrivez-vous</i></a></p>
+                    <div class="row justify-content-between flex-wrap text-center">
+                        <p class="col-12 col-md-5"><a href="index.php?page=contact"><i>Mot de passe oublié ?</i></a></p>
+                        <p class="col-12 col-md-5">Pas encore membre ? <a href="index.php?page=inscription"><i>inscrivez-vous</i></a></p>
                     </div>                    
                 </div>
             </div>
@@ -56,5 +56,5 @@
    
 <?php 
 $content = ob_get_clean();
-require_once("../view/base.php");
+require_once("./view/base.php");
 ?>

@@ -8430,6 +8430,18 @@ textarea.form-control-lg {
   font-size: 1rem !important;
 }
 
+.fs-7 {
+  font-size: 0.85rem !important;
+}
+
+.fs-8 {
+  font-size: 0.6rem !important;
+}
+
+.fs-9 {
+  font-size: 0.5rem !important;
+}
+
 .fst-italic {
   font-style: italic !important;
 }
@@ -11848,18 +11860,13 @@ html, body {
   height: 100%;
 }
 
-.card-img-top {
-  height: auto;
-  width: 25%;
-}
-
 body {
   background: #0b0c11 url(../src/img/bg.webp) no-repeat 50% top;
-  font-family: "Old Fenris";
+  font-family: "Old Fenris", Arial, Helvetica, sans-serif;
 }
 
 h1, .h1, h2, .h2, h3, .h3, .btn, .label, .alert {
-  font-family: DiabloLight;
+  font-family: DiabloLight, "cursive", "Times New Roman", Times, serif;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
@@ -11872,6 +11879,16 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 
 .clip-photo {
   clip-path: circle(40%);
+}
+
+.maxW-input {
+  max-width: 550px;
+  border-radius: 50rem;
+  overflow: hidden;
+}
+
+.table {
+  table-layout: fixed;
 }
 
 /*# sourceMappingURL=default.css.map */

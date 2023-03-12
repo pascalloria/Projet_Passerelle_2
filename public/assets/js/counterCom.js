@@ -20,15 +20,16 @@ function infoText(text, remain, btn) {
         remain.textContent = remaining  + " caractères restants.";
         
         if (remaining > 200 ) {
-            remain.classList.remove('text-danger','text-warning' );
+            remain.classList.add('text-white');
+            remain.classList.remove('text-primary','text-color2');
         }
         if(remaining <= 200) {
-            remain.classList.add('text-warning');
-            remain.classList.remove('text-danger');            
+            remain.classList.add('text-color2');
+            remain.classList.remove('text-primary', 'text-white');            
         } 
-        if(remaining <= 50) {
-            remain.classList.add('text-danger');
-            remain.classList.remove('text-warning');
+        if(remaining < 100) {
+            remain.classList.add('text-primary');
+            remain.classList.remove('text-color2');
         }
         
  // on bloque l'envoi du formulaire au cas ou un petit malin change notre maxlength

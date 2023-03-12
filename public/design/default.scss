@@ -47,8 +47,30 @@ $spacers: (
     4: ($spacer * 1.5),
     5: ($spacer * 3),
     6: ($spacer * 4.5),
-    7: ($spacer * 6)
+    7: ($spacer * 6),
     
+    
+);
+
+// les font-sizes
+$font-size-base : 1rem;
+$h1-font-size:                $font-size-base * 2.5;
+$h2-font-size:                $font-size-base * 2;
+$h3-font-size:                $font-size-base * 1.75;
+$h4-font-size:                $font-size-base * 1.5;
+$h5-font-size:                $font-size-base * 1.25;
+$h6-font-size:                $font-size-base;
+
+$font-sizes: (
+  1: $h1-font-size,
+  2: $h2-font-size,
+  3: $h3-font-size,
+  4: $h4-font-size,
+  5: $h5-font-size,
+  6: $h6-font-size,
+  7: ($font-size-base * 0.85),
+  8: ($font-size-base * 0.60),
+  9: ($font-size-base * 0.50),
 );
 
 @import "../../vendor/node_modules/bootstrap/scss/functions";
@@ -61,26 +83,17 @@ $theme-colors: map-merge($theme-colors, $custom-colors );
 @import "../../vendor/node_modules/bootstrap/scss/bootstrap.scss" ;
 
 
-
-
 html,body {
     height: 100%;
 }
 
-.card-img-top {
-    height: auto;
-    width: 25%;
-}
-
-
-
 body{ 
     background: #0b0c11 url(../src/img/bg.webp) no-repeat 50% top;
-    font-family: "Old Fenris";
+    font-family: "Old Fenris", Arial, Helvetica, sans-serif;
 }
 
 h1,h2,h3,.btn,.label,.alert {
-    font-family: DiabloLight;
+    font-family: DiabloLight, "cursive", 'Times New Roman', Times, serif;
 }
 h1,h2,h3,h4,h5,h6 {
     color: $color1;
@@ -92,4 +105,16 @@ h1,h2,h3,h4,h5,h6 {
 .clip-photo {
     clip-path: circle(40%);
 }
- 
+
+.maxW-input {
+    max-width: 550px;
+    border-radius: 50rem;
+    overflow: hidden;
+}
+// Permet de gerer les text trop long sur un tableaux
+// Conserve une taille equivalente pour tous les colonnes.
+// utilise pour utiliser la classe  .text-truncate
+
+.table {
+    table-layout: fixed;
+}

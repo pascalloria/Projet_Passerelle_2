@@ -13,14 +13,14 @@
 
                     if (in_array($extensionImage,$extensionArray)){
                         $img = time().rand().rand().'.'.$extensionImage;
-                        move_uploaded_file($_FILES["img"]["tmp_name"],"src/img/".$img);
+                        move_uploaded_file($_FILES["img"]["tmp_name"],"./public/src/img/".$img);
                         return $img;                            
                     };                
                 } else {                                    
-                    throw new Exception("La taille de l'image ne dois pas etre supérieur à 3 Mo");
+                    throw new Exception("La taille de l'image ne doit pas dépasser 3 Mo");
                 };            
             } else {
-                throw new Exception("Une erreur à eue lieux : Error n° ".$_FILES["img"]["error"]);
+                throw new Exception("Une erreur e eu lieux : Error n° ".$_FILES["img"]["error"]);
             }             
         }
     }

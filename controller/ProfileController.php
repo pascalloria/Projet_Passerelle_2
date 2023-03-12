@@ -1,9 +1,9 @@
 <?php
-require_once('../model/ArticleRepository.php');
-require_once('../model/ProjectRepository.php');
-require_once('../model/ProfileRepository.php');
-require_once('../model/UsersRepository.php');
-require_once('../model/Options.php');
+require_once('./model/ArticleRepository.php');
+require_once('./model/ProjectRepository.php');
+require_once('./model/ProfileRepository.php');
+require_once('./model/UsersRepository.php');
+require_once('./model/Options.php');
 
 
 class ProfileController  {
@@ -16,6 +16,6 @@ class ProfileController  {
         $articles = $this->profileRepository->getAllContentFromUser(ArticleRepository::TABLE_ART, $id_user);
         $commentaries = $this->profileRepository->getAllContentFromUser(ArticleRepository::TABLE_COM, $id_user);
 
-        require('../view/profile/profileView.php');
+        require('./view/profile/profileView.php');
     }
 }

@@ -1,6 +1,6 @@
 <?php
 
-require_once("../model/UsersRepository.php");
+require_once("./model/UsersRepository.php");
 
 
 class UsersController {
@@ -8,7 +8,7 @@ class UsersController {
     public function __construct (private readonly UsersRepository $usersRepository) {}
 // user  
     function register(){
-        require("../view/User/signInView.php");
+        require("./view/User/signInView.php");
     }
 
     function avalaibleLogin($login){
@@ -34,10 +34,10 @@ class UsersController {
         $password = "12452".sha1($password)."24478";
         $user = $this->usersRepository->addUserBdd($login,$password,$email,);
         if($user){
-            successMessage("Votre compte à été créer avec sucèss"); 
-            redirect("index.php");                     
+            successMessage("Votre compte a été créé avec succès."); 
+            redirect("index.php?page=connect");                     
         } else {
-            throw new Exception("Un probleme est survenue lors de la création de votre compte");
+            throw new Exception("Un problème est survenu lors de la création de votre compte.");
             exit();
         }        
     }
@@ -52,20 +52,20 @@ class UsersController {
         if (!empty($res["id"])){
             $_SESSION["id"]=$res["id"];            
             //redirect("index.php");
-            successMessage("Vous ete connecté");
+            successMessage("Vous êtes connecté.");
             redirect("index.php");                
         } else {
-            errorMessage ("Le login ou le mot de passe n'est pas valide");
+            errorMessage ("Le login ou le mot de passe n'est pas valide.");
         }
     }
 
     function connection(){
-        require_once("../view/User/connectView.php");
+        require_once("./view/User/connectView.php");
     }
 
     function logout(){        
         unset($_SESSION["id"]);
-        successMessage("Vous etes déconnecté");
+        successMessage("Vous êtes déconnecté.");
         redirect("index.php");    
     }
 
@@ -83,7 +83,7 @@ class UsersController {
     function updateEmail($password,$email,$id){
         // cryptage du password 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            errorMessage("Votre adresse email est invalide");
+            errorMessage("Votre adresse email est invalide.");
             redirect("index.php?page=profil");                          
         }                
         $password ="12452".sha1($password)."24478"; 
@@ -96,12 +96,12 @@ class UsersController {
                 // modification de l'email
                 $result = $this->usersRepository->updateEmail($email,$id);
                 if ($result === 0){
-                    throw new Exception("La modification de l'adresse email à échouer. Veuiller contacter l'administrateur du site");
+                    throw new Exception("La modification de l'adresse email a échoué. Veuillez contacter l'administrateur du site.");
                 } else {
-                    successMessage("La modification est effecuté avec succès");                  
+                    successMessage("La modification a été effectuée avec succès.");                  
                 }
             } else {                 
-                errorMessage("Cette adresse email est deja enregistré. Merci d\'en saisir une nouvelle.")  ;               
+                errorMessage("Cette adresse email est déjà enregistrée. Merci d\'en saisir une nouvelle.")  ;               
             }
         } else {
             errorMessage("Le mot passe n'est pas valide !");           
@@ -121,9 +121,9 @@ class UsersController {
                 $newPassword = "12452".sha1($newPassword)."24478";
                 $result = $this->usersRepository->updatePassword($newPassword,$id);
                 if ($result ===0){
-                    throw new Exception("La modification du mot de passe à échouer. Veuiller contacter l'administrateur du site");
+                    throw new Exception("La modification du mot de passe a échoué. Veuillez contacter l'administrateur du site.");
                 } else {
-                    successMessage("La modification du mot de passe est effecuté avec succès");                      
+                    successMessage("La modification a été effectuée avec succès.");                      
                 } 
             } else {
                 errorMessage("Les 2 mots de passe ne sont pas identiques !"); 

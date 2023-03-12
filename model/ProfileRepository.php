@@ -1,6 +1,6 @@
 <?php
 
-require_once('../model/DataBaseManager.php');
+require_once('./model/DataBaseManager.php');
 
 class ProfileRepository extends DBmanager
 {

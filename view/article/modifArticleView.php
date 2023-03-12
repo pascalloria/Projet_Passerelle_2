@@ -31,6 +31,6 @@ ob_start();
 
 <?php }
     $content = ob_get_clean();
-    require('../view/base.php');
+    require('./view/base.php');
 
 ?>

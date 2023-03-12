@@ -1,11 +1,8 @@
 const text = document.querySelector('.showMe');
 const btnCom = document.querySelector('#btnCom');
 const div = document.querySelector('.showHidden');
-const bubble = document.querySelector('#bubble');
-const messenger = document.querySelector('#messenger');
-const titleMessenger = document.querySelector('#title-messenger');
-const closeMessenger = document.querySelector('#closeMessenger');
-const inputCom = document.querySelector('#com');
+
+// on cache / montre les commentaires
 
 btnCom.addEventListener('click', () => {
     div.classList.toggle('d-none');
@@ -16,17 +13,3 @@ btnCom.addEventListener('click', () => {
     }
 });
 
-function showHidden(btn) {
-
-    btn.addEventListener('click', () => {
-        bubble.classList.toggle('d-none');
-        messenger.classList.toggle('d-none');
-        // je veux vraiment que ça soit mobile-friendly
-        inputCom.focus();
-        inputCom.value = "";
-        
-    });
-    
-}
-showHidden(bubble);
-showHidden(closeMessenger);

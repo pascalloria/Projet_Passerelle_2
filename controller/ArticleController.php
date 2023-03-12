@@ -1,6 +1,6 @@
 <?php
-require_once('../model/ArticleRepository.php');
-require_once('../model/Options.php');
+require_once('./model/ArticleRepository.php');
+require_once('./model/Options.php');
 
 class ArticleController 
 {
@@ -9,23 +9,23 @@ class ArticleController
     }
     
     function articles() {
-        
-        $request = $this->articleRepository->getAllArticles();
+        // on affiche les articles par modification la plus récente
+        $request = $this->articleRepository->getAllArticlesByRecentContent();
 
-        require('../view/article/articlesView.php');
+        require('./view/article/articlesView.php');
     }
 
     function article($id_article) {
         $request = $this->articleRepository->getOneArticle($id_article); //variable utilisé dans la view pour fetch
         $coms = $this->articleRepository->getAllComsOfThisArticle($id_article); //variable utilisé dans la view pour fetch
         $gear = new Options;
-        require('../view/article/articleView.php');
+        require('./view/article/articleView.php');
        
     }
 
     function addCommentarie($content, $id_article, $id_user) {
-
-        $newCom = $this->articleRepository->createCommentarie($content, $id_article, $id_user);
+		$date = date('Y/m/d H:i:s');
+        $newCom = $this->articleRepository->createCommentarie($content, $id_article, $id_user, $date);
         
         if($newCom === false) {
             throw new Exception("Impossible d'ajouter votre avis pour le moment");
@@ -39,16 +39,17 @@ class ArticleController
     }
 
     function newArticleForm() {
-        require('../view/article/createArticleView.php');    
+        require('./view/article/createArticleView.php');    
     }
     function upArticleForm($id_article) {
         
         $request = $this->articleRepository->getOneArticle($id_article);
-        require('../view/article/modifArticleView.php');
+        require('./view/article/modifArticleView.php');
     }
     function addArticle($title_article, $article, $id_user) {
         // Model
-        $request = $this->articleRepository->createArticle($title_article, $article, $id_user);
+		$date = date('Y/m/d H:i:s');
+        $request = $this->articleRepository->createArticle($title_article, $article, $id_user, $date);
         
         if(!$request) {
             throw new Exception("Impossible d'ajouter votre article pour le moment");

@@ -6,7 +6,7 @@ const time = today.getHours();
 const month = today.getMonth()+1;
 const a = "253664b";
 const b = "278f0a6";
-
+// en vrai si y'a une méthode pour mieux cacher sa clé je prends
 function takeWeather(city) {
     const url =
       "https://api.openweathermap.org/data/2.5/weather?q=" + city + " &appid=" + a + b + "f775da23d9d38db076&units=metric";

@@ -80,15 +80,16 @@ ob_start();
             </div>
             <?php while ($result = $projects->fetch()) { ?>
                 <form action="index.php" method="post">
-                    <div class="border rounded my-4">
+                    <div class="rounded my-4">
                         <button class="rounded w-100 bg-color2" type="submit" name="project" value="<?= $result['id'] ?>">
-                            <div class="mt-2"><span>Ecrit le : <?= DateToFr::dateFR($result['date']) ?></span> </div>
-                            <hr>
-                            <div class="w-100">
-                                <p>Titre : <?= $result['title']?></p>
-                                <hr>
-                                <p class="text-truncate"><?= $result['content'] ?></p>
+                            <div class="mt-2 text-truncate">
+                                <span class="h4"><?= $result['title']?></span>
+                                <hr class="m-2">
+                                <div class="text-truncate pb-2">
+                                <span class="fs-7">Ecrit le : <?= DateToFr::dateFR($result['date']) ?></span> 
                             </div>
+                                
+                            
                         </button>
                     </div>
                 </form>
@@ -103,13 +104,13 @@ ob_start();
                 <form action="index.php?page=article" method="post">
                     <div class="my-4">
                         <button class="rounded w-100 bg-color2" type="submit" name="article" value="<?= $result['id'] ?>">
-                            <div class="mt-2">Ecrit le : <?= DateToFr::dateFR($result['date']) ?></div>
-                            <hr>
-                            <div class="w-100"><span>Titre : <?= $result['title'] ?></span> </div>
-                            <hr>
-                            <div class="w-100">
-                                <p class="text-truncate"> <?= $result['content'] ?> </p>
+                            <div class="text-truncate mt-2">
+                                <span class="h4"><?= $result['title'] ?></span> 
                             </div>
+                            <hr class="m-2">
+                            <div class="pb-2 fs-7 text-truncate">Ecrit le : <?= DateToFr::dateFR($result['date']) ?></div>
+                            
+                            <!-- afficher le contenu de l'article n'est pas pertinent ici, le titre et la date suffiront, il ne s'agit que d'un lien après tout -->
                         </button>
                     </div>
                 </form>
@@ -126,10 +127,10 @@ ob_start();
         <form action="index.php?page=article" method="post">
             <div class="my-4">
                 <button class="rounded w-100 bg-color2" type="submit" name="article" value="<?= $result['id_article'] ?>">
-                    <div class="mt-2"><span> Ecrit le : <?= DateToFr::dateFR($result['date']) ?></span></div>
-                    <hr>
-                    <div class=" w-100">
-                        <p class="text-truncate"><?= $result['content'] ?> </p>
+                    <div class="mt-2 text-truncate fs-7"><span> Ecrit le : <?= DateToFr::dateFR($result['date']) ?></span></div>
+                    <hr class="m-2">
+                    <div class="w-100">
+                        <p class=" text-break"><?= $result['content'] ?> </p>
                     </div>
                 </button>
             </div>
@@ -141,7 +142,7 @@ ob_start();
 <?php
 $content = ob_get_clean();
 ob_start(); ?>
-<script src="assets/js/profile.js"></script>
+<script src="./public/assets/js/profile.js"></script>
 <?php
 $script = ob_get_clean();
-require('../view/base.php');
+require('./view/base.php');

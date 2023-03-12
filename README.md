@@ -12,12 +12,12 @@ Sujet : Diablo 4.
 
 ## Projets: 
 - une image 
-- peuvent être modifiés ou supprimé par un administrateur
+- peuvent être modifiés ou supprimés par un administrateur
 - système de like ( a implémenter)
 - Uniquement Créé par un administrateur
 
 ## Articles:
-- peut être écrit par un utilisateur connecté.
+- peuvent être écrit par un utilisateur connecté.
 - uniquement l'auteur et les admins peuvent éditer ou supprimer un article.
 - possèdent des commentaires.
 - le nombre de commentaires est affiché.
@@ -43,6 +43,9 @@ Sujet : Diablo 4.
 ### axes d'améliorations :
 
 - réinitialisation de mdp: envoie d'un mail automatique avec lien.
+- compteur de vues.
+- ajout de frameworks côté front voire coté back.
+- en fait il y a tellements de possibilités que c'est difficile de les citer.
 
 
 

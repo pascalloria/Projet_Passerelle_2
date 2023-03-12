@@ -4,13 +4,13 @@ $title = "Contact";
 ob_start();
 
 ?>
-<div class="my-7 text-center"> 
+<div class="my-3 my-md-7 text-center"> 
 
     <h1>Contacter un membre de l'équipe:</h1>
 </div>
-<div class="m-7 d-flex flex-column flex-sm-row justify-content-center align-items-center mx-auto gap-5">
+<div class="m-3 m-md-7 d-flex flex-column flex-sm-row justify-content-center align-items-center mx-auto gap-5">
     <div class="bg-color2 d-flex flex-column align-items-center rounded pb-2">
-        <img width="200" class="clip-photo" src="assets/images/pascal.jfif" alt="pascal en photo" title="pascal en photo">
+        <img width="200" class="clip-photo" src="./public/assets/images/pascal.jfif" alt="pascal en photo" title="pascal en photo">
         <h2>Pascal</h2>
         <div class="d-flex gap-3">
             <a href="https://github.com/pascalloria/" target="_blank"><i class="fa-brands fa-github fs-4"></i></a>
@@ -20,7 +20,7 @@ ob_start();
 
     </div>
     <div class="bg-color2 d-flex flex-column align-items-center rounded pb-2">
-        <img width="200" class="clip-photo" src="assets/images/aurelien.jpg" alt="aurélien en photo" title="aurélien en photo">
+        <img width="200" class="clip-photo" src="./public/assets/images/aurelien.jpg" alt="aurélien en photo" title="aurélien en photo">
         <h2>Aurélien</h2>
         <div class="d-flex gap-3">
             <a href="https://github.com/aurelien-gallea/" target="_blank"><i class="fa-brands fa-github fs-4"></i></a>
@@ -36,4 +36,4 @@ ob_start();
 
 <?php
 $content = ob_get_clean();
-require('../view/base.php');
+require('./view/base.php');

@@ -1,5 +1,5 @@
 <?php
-require_once("../model/DataBaseManager.php");
+require_once("./model/DataBaseManager.php");
 
 
 class ProjectRepository extends DBManager {
@@ -13,10 +13,10 @@ class ProjectRepository extends DBManager {
     }
 
 
-    public function addProject($title,$content,$id_user,$img){
+    public function addProject($title,$content,$id_user,$img,$date){
         $bdd = $this->connection();
-        $requete = $bdd->prepare("INSERT INTO ".$this::TABLE_NAME."(title,content,id_user,img) VALUES (?,?,?,?)");
-        $result = $requete->execute([$title,$content,$id_user,$img]);
+        $requete = $bdd->prepare("INSERT INTO ".$this::TABLE_NAME."(title,content,id_user,img,`date`) VALUES (?,?,?,?,?)");
+        $result = $requete->execute([$title,$content,$id_user,$img,$date]);
         return $result;        
     }
 

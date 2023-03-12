@@ -1,7 +1,7 @@
 <?php
 
-require_once("../model/ProjectRepository.php");
-require_once("../model/ImageManager.php");
+require_once("./model/ProjectRepository.php");
+require_once("./model/ImageManager.php");
  
 
 
@@ -17,7 +17,7 @@ class ProjectController {
         $requete = $this->projectRepository->getAllProject();
         $likes = [];
         if (!$requete){
-            throw new Exception("Les projets n'ont pas pus etre afficher");
+            throw new Exception("Les projets n'ont pas pu être affichés.");
             exit();
         } 
         // suppression du Projet
@@ -36,12 +36,12 @@ class ProjectController {
             $this->removeLikes($_GET["dislike"],$_SESSION["id"]);
         }             
         // view 
-        require("../view/Projects/projectsView.php");  
+        require("./view/Projects/projectsView.php");  
     }
 
     function createProject() {
         //View
-        require ("../view/Projects/createProjectView.php");
+        require ("./view/Projects/createProjectView.php");
     }
 
     function uploadImage(){
@@ -54,12 +54,13 @@ class ProjectController {
         // Model
         if (!empty($_SESSION["id"])){
             $id_user = $_SESSION["id"];
-            $result = $this->projectRepository->addProject($title,$content,$id_user,$img);   
+            $date = date('Y/m/d H:i:s');
+            $result = $this->projectRepository->addProject($title,$content,$id_user,$img, $date);   
             if (!$result){
-                throw new Exception("Le projet ne peux pas etre CREER pour le moment si l'erreur persiste, merci de contacter l'administrateur"); 
+                throw new Exception("Le projet ne peut pas être créé pour le moment, si l'erreur persiste merci de contacter l'administrateur."); 
                 exit();         
             } else {
-                successMessage("Le projet à bien été créér");
+                successMessage("Le projet a bien été créé.");
                 redirect("index.php?page=home");                
             }   
         }        
@@ -69,9 +70,9 @@ class ProjectController {
     function deleteProject ($id) {
         $result = $this->projectRepository->deleteProject($id);    
         if ($result === 0 ){            
-            throw new Exception("Le projet ne peux pas etre SUPPRIMER pour le moment si l'erreur persiste, merci de contacter l'administrateur");  
+            throw new Exception("Le projet ne peut pas être supprimé pour le moment, si l'erreur persiste merci de contacter l'administrateur.");  
         } else {
-            successMessage("Le projet à bien été supprimé");
+            successMessage("Le projet a bien été supprimé.");
             redirect("index.php?page=home");  
         }
     }
@@ -80,16 +81,16 @@ class ProjectController {
         // Model 
         $request = $this->projectRepository->updateProject($id);        
         // View
-        require ("../view/Projects/updateProjectView.php");
+        require ("./view/Projects/updateProjectView.php");
     }  
 
     function updateBddProject ($title,$content,$id,$img){
         
         $result = $this->projectRepository->updateProjectBdd($title,$content,$id,$img);
         if ($result ===0){
-            throw new Exception("La modification du projet à échouer. Veuiller contacter l'administrateur du site");
+            throw new Exception("La modification du projet a échoué. Veuiller contacter l'administrateur du site.");
         } else {
-            successMessage("La modification est effecuté avec suces");
+            successMessage("La modification a été effectuée avec succès.");
             redirect("index.php?");           
         }     
     }
@@ -99,7 +100,7 @@ class ProjectController {
         $result = $this->projectRepository->addLikes($id_project,$id_users);
         redirect("index.php");
         if ($result === 0){
-            throw new Exception("Le like n'a pas pus etre pris en compte. Veuiller contacter l'administrateur du site");
+            throw new Exception("Le like n'a pas pu être pris en compte. Veuiller contacter l'administrateur du site.");
         }  
     }
 
@@ -107,7 +108,7 @@ class ProjectController {
         $result = $this->projectRepository->removeLikes($id_project,$id_users);
         redirect("index.php");
         if ($result === 0){
-            throw new Exception("Le like n'a pas pus etre supprimer en compte. Veuiller contacter l'administrateur du site");
+            throw new Exception("Le like n'a pas pu être supprimé en compte. Veuiller contacter l'administrateur du site.");
         }  
     }
     function getNumberlike($id_project){

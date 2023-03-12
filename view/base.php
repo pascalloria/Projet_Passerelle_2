@@ -7,18 +7,22 @@ if(isset($_SESSION['id'])) $me = Checker::getLoginAndRank($_SESSION['id']);
 <html lang="fr">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $title ?></title>
+<title><?= $title ?></title>
+    <meta property="og:type" content="website"/>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>    
     <meta property="og:title" content="Diablo 4 Blog" />
-	<meta property="og:url" content="https://diablo4.pascalloria.fr">
-    <meta
-      property="og:description"
-      content="Réalisé en duo, ce blog a pour thème diablo 4. N'hésitez pas a partagez vos impressions en commentaires."
-    />
-    <meta property="og:image" content="https://aurelien-gallea.students-laplateforme.io/d4blog/public/assets/images/diablo.jpg" >
-    <link href="./public/assets/images/favicon.ico" rel="icon" type="image/x-icon" />
+	<meta property="og:url" content="https://aurelien-gallea.students-laplateforme.io/d4blog" />  
+    <meta property="og:description" content="Réalisé en duo, ce blog a pour thème diablo 4. N'hésitez pas a partagez vos impressions en commentaires."/>
+    <meta property="og:image" content="https://aurelien-gallea.students-laplateforme.io/d4blog/public/assets/images/diablo.jpg" />
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image"/>
+    <meta property="twitter:url" content="https://aurelien-gallea.students-laplateforme.io/d4blog"/>
+    <meta property="twitter:title" content="Diablo 4 Blog"/>
+    <meta property="twitter:description" content="Réalisé en duo, ce blog a pour thème diablo 4. N'hésitez pas a partagez vos impressions en commentaires."/>
+    <meta property="twitter:image" content="https://aurelien-gallea.students-laplateforme.io/d4blog/public/assets/images/diablo.jpg"/>
+    <link href="./public/assets/images/favicon.ico" rel="icon" type="image/x-icon" >
     <link rel="stylesheet" href="./public/design/default.css">
     <script src="https://kit.fontawesome.com/2847cc80c5.js" crossorigin="anonymous"></script>
     <script src="https://cdn.tiny.cloud/1/1g48gaaql5ca7z1e9yqi7giffrh0oxu7twzzdx3c9t0wbwvv/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>

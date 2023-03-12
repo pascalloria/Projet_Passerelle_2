@@ -11891,4 +11891,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   table-layout: fixed;
 }
 
+.vh-10 {
+  height: 10vh;
+}
+
 /*# sourceMappingURL=default.css.map */

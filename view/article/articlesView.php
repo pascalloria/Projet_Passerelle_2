@@ -47,9 +47,9 @@ ob_start();
                                 <span class="fs-7"><?= DateToFr::dateFR($articles['date']) ?> </span>
                             </div>
                         </div>
-                        <div class="card-body">
+                        <div class="card-body text-truncate">
 
-                            <div class="text-truncate"><?= htmlspecialchars_decode($articles['content']) ?> </div>
+                            <div class="vh-10"><?= htmlspecialchars_decode($articles['content']) ?> </div>
                         </div>
                         <div class="card-footer d-flex align-items-center justify-content-end gap-4">
                             <div class="checkCom" data-bs-toggle="tooltip" data-bs-placement="top" title="commentaires">

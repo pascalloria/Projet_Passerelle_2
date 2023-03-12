@@ -10,15 +10,16 @@ Sujet : Diablo 4.
 
 # Contenu:
 
-## Projets: 
+## Projets:
+Les Projets sur notre site représente les grosses actualités vis a vis du jeux.
 - une image 
 - peuvent être modifiés ou supprimés par un administrateur
-- système de like ( a implémenter)
-- Uniquement Créé par un administrateur
+- système de like
+- Uniquement créé par un administrateur
 
 ## Articles:
-- peuvent être écrit par un utilisateur connecté.
-- uniquement l'auteur et les admins peuvent éditer ou supprimer un article.
+- peuvent être écrit par les utilisateurs connectés.
+- uniquement les auteurs/admins peuvent éditer ou supprimer un article.
 - possèdent des commentaires.
 - le nombre de commentaires est affiché.
 
@@ -34,7 +35,6 @@ Sujet : Diablo 4.
 - suppression d'un utilisateur et de ses contributions 
 
 ## Profil :
-
 - accès au contributions
 - scores dépendant de ses contributions (affiché également dans le liseré sous le header, si connecté)
 - modification de l'adresse mail et du MDP
@@ -46,6 +46,15 @@ Sujet : Diablo 4.
 - compteur de vues.
 - ajout de frameworks côté front voire coté back.
 - en fait il y a tellements de possibilités que c'est difficile de les citer.
+- Forcer l'usage de mot de passe plus sécurisé
+
+
+### questions en suspens :
+
+- affichage des cartes sociales (s'affichent sur dnschecker) ...
+- gestion du .htaccess en mvc 
+- recuperer les scripts bootstrap dans vendor ... 
+
 
 
 

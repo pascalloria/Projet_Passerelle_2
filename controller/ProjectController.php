@@ -1,7 +1,7 @@
 <?php
 
 require_once("./model/ProjectRepository.php");
-require_once("./model/ImageManager.php");
+require_once("./controller/ImageManager.php");
  
 
 

@@ -51,10 +51,18 @@ class Checker extends DBManager
   }
 
   public static function getMyScore($id_user) {
+    
     $bdd = new Checker;
     $req = $bdd->connection();
     $coms = $req->query("SELECT * FROM commentaries WHERE id_user = $id_user");
-    $result= $coms->rowCount() * 10;
+    $result1 = $coms->rowCount() * 10;
+    
+    $bdd2 = new Checker;
+    $req2 = $bdd2->connection();
+    $arts = $req2->query("SELECT * FROM articles WHERE id_user = $id_user");
+    $result2 = $arts->rowCount() * 50;
+
+    $result = $result1 + $result2;
     return $result;
   }
 

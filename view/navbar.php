@@ -13,7 +13,7 @@
             <li class="nav-item">
                 <a href="index.php?page=articles" class="nav-link text-color2"><i class="fa-solid fa-newspaper"></i> Articles</a>
             </li>
-            <?php if(isset($_SESSION['id']) && $me['rank'] == 'admin') { ?>
+            <?php if(isset($_SESSION['id'])) { ?>
             <li class="nav-item">
                 <a href="index.php?page=new-article" class="nav-link text-color2"><i class="fa-solid fa-pen-to-square"></i> créer article</a>
             </li>
